@@ -1,1 +1,2 @@
-Personal website with zola and sam.
+# plain-personal-site
+static academic personal website template
