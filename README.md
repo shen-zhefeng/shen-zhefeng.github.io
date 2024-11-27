@@ -1,4 +1,4 @@
-static academic personal website template with [Zola][zola] and [sam][sam]
+static academic personal website template with [zola][zola] and [sam][sam]
 
 
 
