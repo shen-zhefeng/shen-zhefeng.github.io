@@ -6,9 +6,23 @@ Some teaching material.
 
 ## 2025 Spring
 1. [case 1](@/teaching/2025spring-MA.md).
+  * some details 
+  * <span style="color:red">some *red* text</span>.
+
 2. [case 2](@/teaching/2025spring-MA2.md).
+
    
-## [2024 Autumn](@/teaching/2025spring-MA2.md).
+|  1 |  2 | 3  | 4  | 5  |
+|---|---|---|---|---|
+|  1 |  2 | 3  | 4  | 5  |
+|  1 |  2 | 3  | 4  | 5  |
+|  1 |  2 | 3  | 4  | 5  |
+   
+
+## 2024 Autumn
 
 1. [case 1](@/teaching/2025spring-MA.md).
-2. [case 2](@/teaching/2025spring-MA2.md).
+>some details here.
+
+>some details here.
+1. [case 2](@/teaching/2025spring-MA2.md).
