@@ -1,6 +1,6 @@
 # The URL the site will be built for
 base_url = "https://shen-zhefeng.github.io/"
-title = "Zhefeng Shen"
+title = "EVA"
 taxonomies = [
     { name = "tags", rss = true },
     { name = "authors", rss = true }
@@ -28,12 +28,13 @@ date_format = "%a %b %e, %Y"
 
 home = "home"
 
-sam_menu = [
-        { text = "Zhefeng Shen", link = "/about" },
-        { text = "Research", link = "/research" },
-        { text = "Teaching", link = "/teaching" },
-        { text = "Others", link = "/others" }
 
+sam_menu = [
+        { text = "使徒、襲来", link = "/about" },
+        { text = "覚醒", link = "/research" },
+        { text = "拒絶", link = "/teaching" },
+        { text = "暴走", link = "/others" },
+        { text = "人類補完計画", link = "/others2" }
 ]
 
 sam_bottom_menu = true
