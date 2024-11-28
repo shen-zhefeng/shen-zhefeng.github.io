@@ -1,6 +1,6 @@
 # The URL the site will be built for
 base_url = "https://shen-zhefeng.github.io/"
-title = "EVA"
+title = "Prototype"
 taxonomies = [
     { name = "tags", rss = true },
     { name = "authors", rss = true }
@@ -13,6 +13,12 @@ compile_sass = true
 
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = false
+
+[languages.cn]
+
+
+[languages.fr.translations]
+
 
 [markdown]
 # Whether to do syntax highlighting
@@ -27,7 +33,6 @@ show_reading_time = false
 date_format = "%a %b %e, %Y"
 
 home = "Start"
-
 
 sam_menu = [
         { text = "My name", link = "/about" },
