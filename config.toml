@@ -30,14 +30,14 @@ home = "home"
 
 
 sam_menu = [
-        { text = "使徒、襲来", link = "/about" },
-        { text = "覚醒", link = "/research" },
-        { text = "拒絶", link = "/teaching" },
-        { text = "暴走", link = "/others" },
-        { text = "人類補完計画", link = "/others2" }
+        { text = "My name", link = "/about" },
+        { text = "Research", link = "/research" },
+        { text = "Teaching", link = "/teaching" },
+        { text = "Others", link = "/others" },
+        { text = "More", link = "/more" }
 ]
 
 sam_bottom_menu = true
 
 [extra.sam_footer]
-#text = "Who am I"
+text = "last update: Nov 28 2024"

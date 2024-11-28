@@ -4,7 +4,7 @@ title = "Research"
 
 # Some notes
 
-## representation
+## part 1
 
-1. my master thesis 1 [here](/1027.pdf).
-2. my master thesis 2 next [here](/1027.pdf).
+1. document 1 [here](/sample.pdf).
+2. document 2 [here](/sample.pdf).
