@@ -4,8 +4,7 @@ path="/teaching/2025spring-MA"
 +++
 [Homework](#Homework)
 
-Some teaching material
-# 能用汉字吗？
+中文输入
 ## News 
 1. [case 1](@/teaching/2025spring-MA.md).
   * some details 
