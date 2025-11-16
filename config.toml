@@ -1,6 +1,6 @@
 # The URL the site will be built for
 base_url = "https://shen-zhefeng.github.io/"
-title = "Prototype"
+title = "Prototype Sam"
 taxonomies = [
     { name = "tags", rss = true },
     { name = "authors", rss = true }
@@ -45,4 +45,5 @@ sam_menu = [
 sam_bottom_menu = true
 
 [extra.sam_footer]
-text = "last update: Nov 28 2024"
+update_time=true
+text = ""

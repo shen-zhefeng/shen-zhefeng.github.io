@@ -48,6 +48,10 @@
     {% if config.extra.sam_footer %}
         <div class="section footer">
             {{ config.extra.sam_footer.text | safe }}
+            {% if config.extra.sam_footer.update_time %}
+            Last updated
+             {{ now() | date(format="%B %d, %Y")}}
+            {% endif %}
         </div>
     {% endif %}
 {% endmacro footer %}

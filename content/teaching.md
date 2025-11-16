@@ -12,7 +12,7 @@ Example: Include some teaching material
 
 2. [case 2](@/teaching/2025spring-MA2.md).
 
-
+Example: table
 |  1 |  2 | 3  | 4  | 5  |
 |---|---|---|---|---|
 |  1 |  2 | 3  | 4  | 5  |
@@ -23,7 +23,10 @@ Example: Include some teaching material
 ## 2024 Autumn
 
 1. [case 1](@/teaching/2025spring-MA.md).
+
+Example: code block.
+>some details here.
+>some details here.
 >some details here.
 
->some details here.
-1. [case 2](@/teaching/2025spring-MA2.md).
+2. [case 2](@/teaching/2025spring-MA2.md).

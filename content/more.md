@@ -1,5 +1,5 @@
 +++
-title = "more"
+title = "More"
 +++
 
 # A
