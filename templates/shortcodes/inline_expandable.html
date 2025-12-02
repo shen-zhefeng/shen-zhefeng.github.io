@@ -1,0 +1,29 @@
+<span class="inline_expandable-container">
+    <button class="inline_expandable-trigger" onclick="toggleDetails(this)">
+        {{ trigger }}
+    </button>
+    
+    <span class="inline_expandable-content" style="display: none;" onclick="closeBox(this)">
+        {{ body | markdown | safe }}
+    </span>
+</span>
+
+<script>
+    /* The JavaScript Logic stays exactly the same */
+    function toggleDetails(btn) {
+        var content = btn.nextElementSibling;
+        if (content.style.display === "none") {
+            content.style.display = "block";
+            btn.classList.add("active");
+        } else {
+            content.style.display = "none";
+            btn.classList.remove("active");
+        }
+    }
+
+    function closeBox(box) {
+        box.style.display = "none";
+        var btn = box.previousElementSibling;
+        if (btn) btn.classList.remove("active");
+    }
+</script>

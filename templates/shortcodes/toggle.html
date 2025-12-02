@@ -1,0 +1,10 @@
+<span class="toggle" onclick="toggleBlock('{{ id }}')">
+    {{ text }}
+</span>
+
+<script>
+function toggleBlock(id) {
+    const el = document.getElementById(id);
+    el.style.display = (el.style.display === "block") ? "none" : "block";
+}
+</script>

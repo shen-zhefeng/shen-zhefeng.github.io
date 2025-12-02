@@ -71,4 +71,25 @@ It supports **markdown** inside because we used `body | markdown`.
 4. 4
 5. 5
 6. 6
+
+
+
+
+### `inline_expandable.html`: inline box
+
+Here is a sentence, and {% inline_expandable(trigger="if you click here") %} This is the secret info! {% end %} the sentence continues normally.
+
+
+## `toggle.html`
+
+This is a line with an inline toggle:  {% toggle(id="more1", text="Click for details") %}
+
+{% toggle-block(id="more1") %}
+Here is the detailed information that appears when clicking the toggle above.
+{% end %}
+
+
 [example_link]:https://www.example.com
+
+
+

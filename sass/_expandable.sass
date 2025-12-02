@@ -48,3 +48,96 @@ $expand-border: $white
 
 
 
+
+
+
+// .inline_expandable-container
+//   display: inline-block  // Allows it to sit inside text
+//   position: relative     // Acts as the anchor for the popup box
+
+// .inline_expandable-trigger
+//   background: none
+//   border: none
+//   border-bottom: 1px dashed $expand-color
+//   color: $expand-color
+//   cursor: pointer
+//   padding: 0
+//   font-size: inherit
+//   font-family: inherit
+  
+//   &:hover
+//     border-bottom-style: solid
+
+//   &.active
+//     background-color: lighten($expand-color, 40%) // Highlight the word when open
+
+// .inline_expandable-content
+//   position: absolute    // Floats the box!
+//   top: 100%             // Positions it right below the text
+//   left: 0
+//   z-index: 100          // Ensures it sits on top of other text
+//   min-width: 250px      // Give it width so text fits
+//   max-width: 400px      // Don't let it get too huge
+  
+//   margin-top: 5px
+//   padding: 10px
+//   background-color: $expand-bg
+//   border: 1px solid $expand-border
+//   border-radius: 4px
+//   box-shadow: 0 4px 6px rgba(0,0,0,0.1) // Adds a nice shadow for depth
+//   cursor: pointer
+//   transition: background-color 0.2s ease
+
+//   &:hover
+//     background-color: darken($expand-bg, 5%)
+
+
+  .inline_expandable-container
+  // Revert back to inline structure
+  display: inline-block 
+  position: relative     
+  margin-bottom: 0       // Remove the large margin added for block-stacking
+
+.inline_expandable-content
+  // Revert back to floating popover
+  position: absolute    
+  top: 100%             
+  left: 0
+  z-index: 100          
+  min-width: 250px      
+  max-width: 400px      
+  
+  // Keep the tight margin/padding settings
+  margin-top: 0
+  padding: 5px 40px 10px 10px 
+  
+  background-color: $expand-bg
+  border: 1px solid $expand-border
+  border-radius: 4px
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1)
+  cursor: pointer
+  transition: background-color 0.2s ease
+  
+  // IMPORTANT: The left border fix is not needed for the floating box, 
+  // but let's keep the padding/margin fixes
+  
+  &:hover
+    background-color: darken($expand-bg, 5%)
+
+  > :first-child
+    margin-top: 0
+
+
+
+.inline-toggle 
+    color: #007acc
+    cursor: pointer
+    text-decoration: underline
+    display: inline-block
+
+.detail-block 
+    display: none
+    margin: 0.5rem 0 1rem 0
+    padding: 0.5rem 1rem
+    border-left: 3px solid #007acc
+    background: #f5f7fa
