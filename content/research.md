@@ -59,7 +59,7 @@ It supports **markdown** inside because we used `body | markdown`.
 This block appears when the user clicks the text above. 
 It supports **markdown** inside because we used `body | markdown`.
 {% end %}
-1. {% expandable(trigger="if you click this line") %}
+1. {% expandable(trigger="if you click this line")%}
 This block appears when the user clicks the text above. 
 It supports **markdown** inside because we used `body | markdown`.
 {% end %}
@@ -72,8 +72,15 @@ It supports **markdown** inside because we used `body | markdown`.
 5. 5
 6. 6
 
-
-
+#### header parameter
+1. {% expandable(trigger="if you click this line",header="123123 [link](http://127.0.0.1:1111/research)")%}
+This block appears when the user clicks the text above. 
+It supports **markdown** inside because we used `body | markdown`.
+{% end %}
+2. {% expandable(trigger="if you click this line")%}
+This block appears when the user clicks the text above. 
+It supports **markdown** inside because we used `body | markdown`.
+{% end %}
 
 ### `inline_expandable.html`: inline box
 

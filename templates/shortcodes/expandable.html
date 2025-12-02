@@ -1,11 +1,11 @@
 <div class="expandable-container">
-    <button class="expandable-trigger" onclick="toggleDetails(this)">
-        {{ trigger }}
-    </button>
-    
-    <div class="expandable-content" style="display: none;" onclick="closeBox(this)">
-        {{ body | markdown | safe }}
-    </div>
+{{header| default(value="")| markdown | safe}}
+<button class="expandable-trigger" onclick="toggleDetails(this)">
+    {{ trigger }}
+</button>
+<div class="expandable-content" style="display: none;" onclick="closeBox(this)">
+    {{ body | markdown | safe }}
+</div>
 </div>
 
 <script>
