@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="referrer" content="no-referrer">
+        <link rel="icon" type="image/x-icon" href="/faviconblack.ico">
+        <link rel="stylesheet" href="https://shen-zhefeng.github.io/fonts.css">
+        <link rel="stylesheet" href="https://shen-zhefeng.github.io/style.css">
+
+        <title>
+    Research
+</title>
+
+        
+    </head>
+    <body>
+        
+    <div class="wrap">
+        <div class="section" id="title">
+            
+    Research
+
+        </div>
+        <div class="section" id="sections">
+            
+        </div>
+        <div class="section" id="content">
+            
+    
+        
+        
+        
+        
+        
+        <hr/>
+    
+    <h1 id="some-notes">Some notes</h1>
+<h2 id="include-documents">Include documents</h2>
+<ol>
+<li>document 1 <a href="/papers/sample.pdf">here</a>.</li>
+<li>document 2 <a href="/sample.pdf">here</a>.</li>
+</ol>
+<h2 id="expandable-block">Expandable block</h2>
+<h3 id="native-way-with-details-environment">Native way: with <code>&lt;details&gt;</code> environment</h3>
+<details>
+<summary>Click this line to see more info</summary>
+<p>Here is the detailed information block.
+You can even include <strong>bold text</strong> or <a href="https://www.example.com">links</a>.</p>
+</details>
+<h3 id="shortcode-way-with-expand-shortcode">shortcode way: with <code>{% expand %}</code> shortcode</h3>
+<h4 id="expandable-html">expandable.html</h4>
+<p>This is a normal paragraph, but <div class="expandable-container">
+
+<button class="expandable-trigger" onclick="toggleDetails(this)">
+    if you click this line
+</button>
+<div class="expandable-content" style="display: none;" onclick="closeBox(this)">
+    <h3 id="hidden-details">Hidden Details</h3>
+<p>This block appears when the user clicks the text above. 
+It supports <strong>markdown</strong> inside because we used <code>body | markdown</code>.</p>
+
+</div>
+</div>
+
+<script>
+    // Function 1: Clicking the Trigger Line
+    function toggleDetails(btn) {
+        var content = btn.nextElementSibling;
+        if (content.style.display === "none") {
+            content.style.display = "block";
+            btn.classList.add("active");
+        } else {
+            content.style.display = "none";
+            btn.classList.remove("active");
+        }
+    }
+
+    // Function 2: Clicking the Box itself
+    function closeBox(box) {
+        // 1. Hide the box
+        box.style.display = "none";
+        
+        // 2. Find the trigger button (it is the previous element)
+        var btn = box.previousElementSibling;
+        
+        // 3. Remove the 'active' styling from the button so it resets
+        if (btn) {
+            btn.classList.remove("active");
+        }
+    }
+</script>
+
+<!-- 
+<style>
+    /* Basic styling you can move to your main CSS file */
+    .expandable-trigger {
+        background: none;
+        border: none;
+        border-bottom: 1px dashed #007bff;
+        color: #007bff;
+        cursor: pointer;
+        padding: 0;
+        font-size: inherit;
+        font-family: inherit;
+    }
+    .expandable-trigger:hover {
+        border-bottom-style: solid;
+    }
+    .expandable-content {
+        margin-top: 10px;
+        padding: 10px;
+        border-left: 3px solid #eee;
+        background-color: dark-grey;
+    }
+</style> -->
+
+<div class="expandable-container">
+
+<button class="expandable-trigger" onclick="toggleDetails(this)">
+    if you click this line
+</button>
+<div class="expandable-content" style="display: none;" onclick="closeBox(this)">
+    <h3 id="hidden-details">Hidden Details</h3>
+<p>This block appears when the user clicks the text above. 
+It supports <strong>markdown</strong> inside because we used <code>body | markdown</code>.</p>
+
+</div>
+</div>
+
+<script>
+    // Function 1: Clicking the Trigger Line
+    function toggleDetails(btn) {
+        var content = btn.nextElementSibling;
+        if (content.style.display === "none") {
+            content.style.display = "block";
+            btn.classList.add("active");
+        } else {
+            content.style.display = "none";
+            btn.classList.remove("active");
+        }
+    }
+
+    // Function 2: Clicking the Box itself
+    function closeBox(box) {
+        // 1. Hide the box
+        box.style.display = "none";
+        
+        // 2. Find the trigger button (it is the previous element)
+        var btn = box.previousElementSibling;
+        
+        // 3. Remove the 'active' styling from the button so it resets
+        if (btn) {
+            btn.classList.remove("active");
+        }
+    }
+</script>
+
+<!-- 
+<style>
+    /* Basic styling you can move to your main CSS file */
+    .expandable-trigger {
+        background: none;
+        border: none;
+        border-bottom: 1px dashed #007bff;
+        color: #007bff;
+        cursor: pointer;
+        padding: 0;
+        font-size: inherit;
+        font-family: inherit;
+    }
+    .expandable-trigger:hover {
+        border-bottom-style: solid;
+    }
+    .expandable-content {
+        margin-top: 10px;
+        padding: 10px;
+        border-left: 3px solid #eee;
+        background-color: dark-grey;
+    }
+</style> -->
+</p>
+<p>line one</p>
+<p>line two </p>
+<p>line three</p>
+<ol>
+<li>What is this?</li>
+</ol>
+<div class="expandable-container">
+
+<button class="expandable-trigger" onclick="toggleDetails(this)">
+    Abstract
+</button>
+<div class="expandable-content" style="display: none;" onclick="closeBox(this)">
+    <p>This block appears when the user clicks the text above. 
+It supports <strong>markdown</strong> inside because we used <code>body | markdown</code>.</p>
+<h1 id="11">11</h1>
+<p>1</p>
+<h2 id="22">22</h2>
+<p>22</p>
+
+</div>
+</div>
+
+<script>
+    // Function 1: Clicking the Trigger Line
+    function toggleDetails(btn) {
+        var content = btn.nextElementSibling;
+        if (content.style.display === "none") {
+            content.style.display = "block";
+            btn.classList.add("active");
+        } else {
+            content.style.display = "none";
+            btn.classList.remove("active");
+        }
+    }
+
+    // Function 2: Clicking the Box itself
+    function closeBox(box) {
+        // 1. Hide the box
+        box.style.display = "none";
+        
+        // 2. Find the trigger button (it is the previous element)
+        var btn = box.previousElementSibling;
+        
+        // 3. Remove the 'active' styling from the button so it resets
+        if (btn) {
+            btn.classList.remove("active");
+        }
+    }
+</script>
+
+<!-- 
+<style>
+    /* Basic styling you can move to your main CSS file */
+    .expandable-trigger {
+        background: none;
+        border: none;
+        border-bottom: 1px dashed #007bff;
+        color: #007bff;
+        cursor: pointer;
+        padding: 0;
+        font-size: inherit;
+        font-family: inherit;
+    }
+    .expandable-trigger:hover {
+        border-bottom-style: solid;
+    }
+    .expandable-content {
+        margin-top: 10px;
+        padding: 10px;
+        border-left: 3px solid #eee;
+        background-color: dark-grey;
+    }
+</style> -->
+<ol>
+<li><div class="expandable-container">
+
+<button class="expandable-trigger" onclick="toggleDetails(this)">
+    if you click this line
+</button>
+<div class="expandable-content" style="display: none;" onclick="closeBox(this)">
+    <p>This block appears when the user clicks the text above. 
+It supports <strong>markdown</strong> inside because we used <code>body | markdown</code>.</p>
+
+</div>
+</div>
+
+<script>
+    // Function 1: Clicking the Trigger Line
+    function toggleDetails(btn) {
+        var content = btn.nextElementSibling;
+        if (content.style.display === "none") {
+            content.style.display = "block";
+            btn.classList.add("active");
+        } else {
+            content.style.display = "none";
+            btn.classList.remove("active");
+        }
+    }
+
+    // Function 2: Clicking the Box itself
+    function closeBox(box) {
+        // 1. Hide the box
+        box.style.display = "none";
+        
+        // 2. Find the trigger button (it is the previous element)
+        var btn = box.previousElementSibling;
+        
+        // 3. Remove the 'active' styling from the button so it resets
+        if (btn) {
+            btn.classList.remove("active");
+        }
+    }
+</script>
+
+<!-- 
+<style>
+    /* Basic styling you can move to your main CSS file */
+    .expandable-trigger {
+        background: none;
+        border: none;
+        border-bottom: 1px dashed #007bff;
+        color: #007bff;
+        cursor: pointer;
+        padding: 0;
+        font-size: inherit;
+        font-family: inherit;
+    }
+    .expandable-trigger:hover {
+        border-bottom-style: solid;
+    }
+    .expandable-content {
+        margin-top: 10px;
+        padding: 10px;
+        border-left: 3px solid #eee;
+        background-color: dark-grey;
+    }
+</style> -->
+</li>
+<li><div class="expandable-container">
+
+<button class="expandable-trigger" onclick="toggleDetails(this)">
+    if you click this line
+</button>
+<div class="expandable-content" style="display: none;" onclick="closeBox(this)">
+    <p>This block appears when the user clicks the text above. 
+It supports <strong>markdown</strong> inside because we used <code>body | markdown</code>.</p>
+
+</div>
+</div>
+
+<script>
+    // Function 1: Clicking the Trigger Line
+    function toggleDetails(btn) {
+        var content = btn.nextElementSibling;
+        if (content.style.display === "none") {
+            content.style.display = "block";
+            btn.classList.add("active");
+        } else {
+            content.style.display = "none";
+            btn.classList.remove("active");
+        }
+    }
+
+    // Function 2: Clicking the Box itself
+    function closeBox(box) {
+        // 1. Hide the box
+        box.style.display = "none";
+        
+        // 2. Find the trigger button (it is the previous element)
+        var btn = box.previousElementSibling;
+        
+        // 3. Remove the 'active' styling from the button so it resets
+        if (btn) {
+            btn.classList.remove("active");
+        }
+    }
+</script>
+
+<!-- 
+<style>
+    /* Basic styling you can move to your main CSS file */
+    .expandable-trigger {
+        background: none;
+        border: none;
+        border-bottom: 1px dashed #007bff;
+        color: #007bff;
+        cursor: pointer;
+        padding: 0;
+        font-size: inherit;
+        font-family: inherit;
+    }
+    .expandable-trigger:hover {
+        border-bottom-style: solid;
+    }
+    .expandable-content {
+        margin-top: 10px;
+        padding: 10px;
+        border-left: 3px solid #eee;
+        background-color: dark-grey;
+    }
+</style> -->
+</li>
+<li>
+<p>1</p>
+</li>
+<li>
+<p>2</p>
+</li>
+<li>
+<p>3</p>
+</li>
+<li>
+<p>4</p>
+</li>
+<li>
+<p>5</p>
+</li>
+<li>
+<p>6</p>
+</li>
+</ol>
+<h4 id="header-parameter">header parameter</h4>
+<ol>
+<li><div class="expandable-container">
+<p>123123 <a href="http://127.0.0.1:1111/research">link</a></p>
+
+<button class="expandable-trigger" onclick="toggleDetails(this)">
+    if you click this line
+</button>
+<div class="expandable-content" style="display: none;" onclick="closeBox(this)">
+    <p>This block appears when the user clicks the text above. 
+It supports <strong>markdown</strong> inside because we used <code>body | markdown</code>.</p>
+
+</div>
+</div>
+
+<script>
+    // Function 1: Clicking the Trigger Line
+    function toggleDetails(btn) {
+        var content = btn.nextElementSibling;
+        if (content.style.display === "none") {
+            content.style.display = "block";
+            btn.classList.add("active");
+        } else {
+            content.style.display = "none";
+            btn.classList.remove("active");
+        }
+    }
+
+    // Function 2: Clicking the Box itself
+    function closeBox(box) {
+        // 1. Hide the box
+        box.style.display = "none";
+        
+        // 2. Find the trigger button (it is the previous element)
+        var btn = box.previousElementSibling;
+        
+        // 3. Remove the 'active' styling from the button so it resets
+        if (btn) {
+            btn.classList.remove("active");
+        }
+    }
+</script>
+
+<!-- 
+<style>
+    /* Basic styling you can move to your main CSS file */
+    .expandable-trigger {
+        background: none;
+        border: none;
+        border-bottom: 1px dashed #007bff;
+        color: #007bff;
+        cursor: pointer;
+        padding: 0;
+        font-size: inherit;
+        font-family: inherit;
+    }
+    .expandable-trigger:hover {
+        border-bottom-style: solid;
+    }
+    .expandable-content {
+        margin-top: 10px;
+        padding: 10px;
+        border-left: 3px solid #eee;
+        background-color: dark-grey;
+    }
+</style> -->
+</li>
+<li><div class="expandable-container">
+
+<button class="expandable-trigger" onclick="toggleDetails(this)">
+    if you click this line
+</button>
+<div class="expandable-content" style="display: none;" onclick="closeBox(this)">
+    <p>This block appears when the user clicks the text above. 
+It supports <strong>markdown</strong> inside because we used <code>body | markdown</code>.</p>
+
+</div>
+</div>
+
+<script>
+    // Function 1: Clicking the Trigger Line
+    function toggleDetails(btn) {
+        var content = btn.nextElementSibling;
+        if (content.style.display === "none") {
+            content.style.display = "block";
+            btn.classList.add("active");
+        } else {
+            content.style.display = "none";
+            btn.classList.remove("active");
+        }
+    }
+
+    // Function 2: Clicking the Box itself
+    function closeBox(box) {
+        // 1. Hide the box
+        box.style.display = "none";
+        
+        // 2. Find the trigger button (it is the previous element)
+        var btn = box.previousElementSibling;
+        
+        // 3. Remove the 'active' styling from the button so it resets
+        if (btn) {
+            btn.classList.remove("active");
+        }
+    }
+</script>
+
+<!-- 
+<style>
+    /* Basic styling you can move to your main CSS file */
+    .expandable-trigger {
+        background: none;
+        border: none;
+        border-bottom: 1px dashed #007bff;
+        color: #007bff;
+        cursor: pointer;
+        padding: 0;
+        font-size: inherit;
+        font-family: inherit;
+    }
+    .expandable-trigger:hover {
+        border-bottom-style: solid;
+    }
+    .expandable-content {
+        margin-top: 10px;
+        padding: 10px;
+        border-left: 3px solid #eee;
+        background-color: dark-grey;
+    }
+</style> -->
+</li>
+</ol>
+<h3 id="inline-expandable-html-inline-box"><code>inline_expandable.html</code>: inline box</h3>
+<p>Here is a sentence, and <span class="inline_expandable-container">
+    <button class="inline_expandable-trigger" onclick="toggleDetails(this)">
+        if you click here
+    </button>
+    
+    <span class="inline_expandable-content" style="display: none;" onclick="closeBox(this)">
+        <p>This is the secret info!</p>
+
+    </span>
+</span>
+
+<script>
+    /* The JavaScript Logic stays exactly the same */
+    function toggleDetails(btn) {
+        var content = btn.nextElementSibling;
+        if (content.style.display === "none") {
+            content.style.display = "block";
+            btn.classList.add("active");
+        } else {
+            content.style.display = "none";
+            btn.classList.remove("active");
+        }
+    }
+
+    function closeBox(box) {
+        box.style.display = "none";
+        var btn = box.previousElementSibling;
+        if (btn) btn.classList.remove("active");
+    }
+</script> the sentence continues normally.</p>
+<h2 id="toggle-html"><code>toggle.html</code></h2>
+<p>This is a line with an inline toggle:  <span class="toggle" onclick="toggleBlock('more1')">
+    Click for details
+</span>
+
+<script>
+function toggleBlock(id) {
+    const el = document.getElementById(id);
+    el.style.display = (el.style.display === "block") ? "none" : "block";
+}
+</script></p>
+
+
+        </div>
+        
+    <div class="section bottom-menu">
+        <hr/>
+        <p>
+            
+                
+                    <a href="&#x2F;about">Name</a>
+                    &#183;
+                
+                    <a href="&#x2F;research">Research</a>
+                    &#183;
+                
+                    <a href="&#x2F;teaching">Teaching</a>
+                    &#183;
+                
+                    <a href="&#x2F;others">Others</a>
+                    &#183;
+                
+                    <a href="&#x2F;more">More</a>
+                    &#183;
+                
+            
+            <a href="https:&#x2F;&#x2F;shen-zhefeng.github.io&#x2F;">
+                Start
+            </a>
+        </p>
+    </div>
+
+        
+    
+        <div class="section footer">
+            
+            
+            Last updated
+             December 02, 2025
+            
+        </div>
+    
+
+    </div>
+
+    </body>
+</html>
