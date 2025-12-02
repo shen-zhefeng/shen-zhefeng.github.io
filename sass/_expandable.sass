@@ -1,0 +1,50 @@
+@import "vars"
+@import "mixins"
+
+$expand-color: #007bff
+$expand-bg: $black
+$expand-border: $white
+
+
+.expandable-container
+  display: block
+  
+  // CHANGED: Reduced from 1rem to 4px
+  margin-bottom: 4px
+  
+.expandable-trigger
+  background: none
+  border: none
+  //border-bottom: 2px solid $links
+  border-radius: 0
+  color:  $links
+  cursor: pointer
+  padding: 0
+  font-size: inherit
+  font-family: inherit
+  +ease(0.5s)
+
+  // The '&' refers to .expandable-trigger:hover
+  &:hover
+    color: $links-hover
+    font-style: none
+    
+  // Styling when the box is open
+  &.active
+    font-weight: bold
+    color: $links
+
+.expandable-content
+  margin-top: 10px
+  padding: 5px 10px 10px 10px
+  border-left: 3px solid $expand-border
+  background-color: $expand-bg
+  cursor: pointer // Shows hand icon so user knows to click to close
+  transition: background-color 1s ease // Optional: Makes the color change smooth
+  
+  &:hover
+    background-color: darken($expand-bg, 10%) // Using SASS function
+    
+
+
+

@@ -1,0 +1,61 @@
+<div class="expandable-container">
+    <button class="expandable-trigger" onclick="toggleDetails(this)">
+        {{ trigger }}
+    </button>
+    
+    <div class="expandable-content" style="display: none;" onclick="closeBox(this)">
+        {{ body | markdown | safe }}
+    </div>
+</div>
+
+<script>
+    // Function 1: Clicking the Trigger Line
+    function toggleDetails(btn) {
+        var content = btn.nextElementSibling;
+        if (content.style.display === "none") {
+            content.style.display = "block";
+            btn.classList.add("active");
+        } else {
+            content.style.display = "none";
+            btn.classList.remove("active");
+        }
+    }
+
+    // Function 2: Clicking the Box itself
+    function closeBox(box) {
+        // 1. Hide the box
+        box.style.display = "none";
+        
+        // 2. Find the trigger button (it is the previous element)
+        var btn = box.previousElementSibling;
+        
+        // 3. Remove the 'active' styling from the button so it resets
+        if (btn) {
+            btn.classList.remove("active");
+        }
+    }
+</script>
+
+<!-- 
+<style>
+    /* Basic styling you can move to your main CSS file */
+    .expandable-trigger {
+        background: none;
+        border: none;
+        border-bottom: 1px dashed #007bff;
+        color: #007bff;
+        cursor: pointer;
+        padding: 0;
+        font-size: inherit;
+        font-family: inherit;
+    }
+    .expandable-trigger:hover {
+        border-bottom-style: solid;
+    }
+    .expandable-content {
+        margin-top: 10px;
+        padding: 10px;
+        border-left: 3px solid #eee;
+        background-color: dark-grey;
+    }
+</style> -->
