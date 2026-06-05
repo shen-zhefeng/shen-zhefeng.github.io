@@ -41,9 +41,9 @@ Let &pi;(x) denote the number of primes &le; x. Then
 
 ### Inline Math
 
-The Riemann zeta function \(\zeta(s) = \sum_{n=1}^\infty \frac{1}{n^s}\) for \(\Re(s) > 1\).
+The Riemann zeta function $\zeta(s) = \sum_{n=1}^\infty \frac{1}{n^s}$ for $\Re(s) > 1$.
 
-An automorphic form \(f\) on \(\GL_n(\mathbb{A}_\mathbb{Q})\) satisfies \(f(\gamma g k) = f(g)\) for \(\gamma \in \GL_n(\mathbb{Q})\), \(k \in K_\infty\).
+An automorphic form $f$ on $\GL\_n(\mathbb{A}\_\mathbb{Q})$ satisfies $f(\gamma g k) = f(g)$ for $\gamma \in \GL\_n(\mathbb{Q})$, $k \in K\_\infty$.
 
 ### Display Math
 
@@ -55,7 +55,7 @@ $$L(s, \chi) = \sum_{n=1}^\infty \frac{\chi(n)}{n^s}$$
 
 ### Number Fields
 
-Let \(K/\mathbb{Q}\) be a number field of degree \(n = [K:\mathbb{Q}]\).
+Let $K/\mathbb{Q}$ be a number field of degree $n = [K:\mathbb{Q}]$.
 
 $$\zeta_K(s) = \sum_{\mathfrak{a} \neq 0} \frac{1}{N(\mathfrak{a})^s}$$
 
@@ -67,21 +67,21 @@ $$f(z) = \sum_{n=0}^\infty a_n e^{2\pi i n z}, \qquad \Im(z) > 0$$
 
 | LaTeX | Rendered |
 |---|---|
-| `$\mathbb{Z}, \mathbb{Q}, \mathbb{R}, \mathbb{C}$` | \(\mathbb{Z}, \mathbb{Q}, \mathbb{R}, \mathbb{C}\) |
-| `\mathcal{O}_K, \mathfrak{p}, \mathfrak{m}` | \(\mathcal{O}_K, \mathfrak{p}, \mathfrak{m}\) |
-| `\sum, \prod, \int, \partial` | \(\sum, \prod, \int, \partial\) |
-| `\infty, \to, \mapsto, \hookrightarrow` | \(\infty, \to, \mapsto, \hookrightarrow\) |
-| `\otimes, \oplus, \cong, \simeq` | \(\otimes, \oplus, \cong, \simeq\) |
-| `\leq, \geq, \neq, \equiv` | \(\leq, \geq, \neq, \equiv\) |
-| `\sqrt{2}, \frac{a}{b}, \binom{n}{k}` | \(\sqrt{2}, \frac{a}{b}, \binom{n}{k}\) |
-| `\alpha, \beta, \gamma, \Gamma` | \(\alpha, \beta, \gamma, \Gamma\) |
-| `\varepsilon, \varphi, \varnothing` | \(\varepsilon, \varphi, \varnothing\) |
+| `$\mathbb{Z}, \mathbb{Q}, \mathbb{R}, \mathbb{C}$` | $\mathbb{Z}, \mathbb{Q}, \mathbb{R}, \mathbb{C}$ |
+| `\mathcal{O}_K, \mathfrak{p}, \mathfrak{m}` | $\mathcal{O}\_K, \mathfrak{p}, \mathfrak{m}$ |
+| `\sum, \prod, \int, \partial` | $\sum, \prod, \int, \partial$ |
+| `\infty, \to, \mapsto, \hookrightarrow` | $\infty, \to, \mapsto, \hookrightarrow$ |
+| `\otimes, \oplus, \cong, \simeq` | $\otimes, \oplus, \cong, \simeq$ |
+| `\leq, \geq, \neq, \equiv` | $\leq, \geq, \neq, \equiv$ |
+| `\sqrt{2}, \frac{a}{b}, \binom{n}{k}` | $\sqrt{2}, \frac{a}{b}, \binom{n}{k}$ |
+| `\alpha, \beta, \gamma, \Gamma` | $\alpha, \beta, \gamma, \Gamma$ |
+| `\varepsilon, \varphi, \varnothing` | $\varepsilon, \varphi, \varnothing$ |
 
 ### Delimiters
 
 | Syntax | Mode |
 |---|---|
-| `\(\zeta(s)\)` | Inline math |
+| `$\zeta(s)$` | Inline math |
 | `$$\sum_{n=1}^\infty$$` | Display math |
 
 ---
@@ -241,7 +241,7 @@ No JavaScript required. Built into all modern browsers.
       2. Non-spherical
    2. Cusp forms
 2. L-functions
-   - Riemann \(\zeta(s)\)
+   - Riemann $\zeta(s)$
    - Dirichlet L-functions
    - Artin L-functions
    - Hasse&ndash;Weil L-functions
