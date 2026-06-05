@@ -15,7 +15,7 @@ $expand-border: $white
 .expandable-trigger
   background: none
   border: none
-  //border-bottom: 2px solid $links
+  border-bottom: 2px solid $links
   border-radius: 0
   color:  $links
   cursor: pointer
@@ -28,7 +28,15 @@ $expand-border: $white
   &:hover
     color: $links-hover
     font-style: none
-    
+  &.no-underline
+    box-shadow: none // Remove the line
+    border-bottom: none
+
+
+    &:hover // Ensure the line stays gone on hover too
+      // box-shadow: none
+      color: $links-hover
+      // font-style: none
   // Styling when the box is open
   &.active
     font-weight: bold
@@ -43,7 +51,7 @@ $expand-border: $white
   transition: background-color 1s ease // Optional: Makes the color change smooth
   
   &:hover
-    background-color: darken($expand-bg, 10%) // Using SASS function
+    background-color: darken($expand-bg, 20%) // Using SASS function
     
 
 
