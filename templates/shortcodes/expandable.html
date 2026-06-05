@@ -1,7 +1,7 @@
 <div class="expandable-container">
 {{header| default(value="")| markdown | safe}}
 {% set underline_class = "" %}
-{% if underline is defined and (underline == "false" or underline == false) %}
+{% if underline is defined and not underline %}
     {% set underline_class = " no-underline" %}
 {% endif %}
 <button class="expandable-trigger{{underline_class}}" onclick="toggleDetails(this)">
