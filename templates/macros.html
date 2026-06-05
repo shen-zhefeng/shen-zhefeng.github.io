@@ -29,7 +29,7 @@
                     {% if link.text == "Teaching" and config.extra.teaching_draft %}
                         {# skip #}
                     {% else %}
-                    <a href="{{ link.link }}">{{ link.text }}</a>
+                    <a href="{{ link.link }}">{{ trans(key="menu_" ~ link.text | lower, lang=lang) | default(value=link.text) }}</a>
                     &#183;
                     {% endif %}
                 {% endfor %}
@@ -54,7 +54,7 @@
             {{ config.extra.sam_footer.text | safe }}
             {% if config.extra.sam_footer.update_time %}
             {{ trans(key="last_updated", lang=lang) }}
-             {{ now() | date(format="%B %d, %Y")}}
+             {{ now() | date(format=trans(key="date_format", lang=lang)) }}
             {% endif %}
         </div>
     {% endif %}

@@ -36,7 +36,7 @@
                         {% else %}
                         <div class="big-link">
                             <a href="{{ link.link }}">
-                                {{ link.text }}
+                                {{ trans(key="menu_" ~ link.text | lower, lang=lang) | default(value=link.text) }}
                             </a>
                         </div>
                         {% endif %}

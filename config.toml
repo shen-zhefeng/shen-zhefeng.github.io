@@ -23,6 +23,12 @@ last_updated = "最后更新"
 lang_en = "English"
 lang_cn = "中文"
 lang_ja = "日本語"
+menu_name = "姓名"
+menu_research = "研究"
+menu_teaching = "教学"
+menu_cv = "CV"
+menu_more = "更多"
+date_format = "%Y年%m月%d日"
 
 [languages.ja]
 title = "Prototype Sam"
@@ -33,6 +39,12 @@ last_updated = "最終更新"
 lang_en = "English"
 lang_cn = "中文"
 lang_ja = "日本語"
+menu_name = "名前"
+menu_research = "研究"
+menu_teaching = "教育"
+menu_cv = "CV"
+menu_more = "もっと"
+date_format = "%Y年%m月%d日"
 
 [translations]
 home = "Start"
@@ -40,6 +52,12 @@ last_updated = "Last updated"
 lang_en = "English"
 lang_cn = "中文"
 lang_ja = "日本語"
+menu_name = "Name"
+menu_research = "Research"
+menu_teaching = "Teaching"
+menu_cv = "CV"
+menu_more = "More"
+date_format = "%B %d, %Y"
 
 [markdown]
 # Whether to do syntax highlighting
@@ -66,7 +84,7 @@ sam_menu = [
 ]
 
 sam_bottom_menu = true
-teaching_draft = true
+teaching_draft = false
 
 [extra.sam_footer]
 update_time=true
