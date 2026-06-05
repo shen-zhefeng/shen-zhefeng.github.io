@@ -8,12 +8,22 @@
 
 {% block title %}
     {{ page.title }}
-    {% if page.extra.lang_links %}
+    {% if page.extra.lang_links or page.extra.multilingual %}
     <div class="lang-links">
-        {% for link in page.extra.lang_links %}
-            <a href="{{ link.path }}">{{ link.text }}</a>
-            {% if not loop.last %} | {% endif %}
-        {% endfor %}
+        {% if page.extra.lang_links %}
+            {% for link in page.extra.lang_links %}
+                {% set link_text = link.text | default(value=trans(key="lang_" ~ link.code, lang=lang)) %}
+                {% set link_path = link.path | default(value="/" ~ link.code ~ "/" ~ page.slug ~ "/") %}
+                <a href="{{ link_path }}">{{ link_text }}</a><span class="lang-sep"> | </span>
+            {% endfor %}
+        {% else %}
+            {% set all_langs = ["en", "cn", "ja"] %}
+            {% for l in all_langs %}
+                {% if l != lang %}
+                <a href="{% if l == "en" %}/{% else %}/{{ l }}/{% endif %}{{ page.slug }}/">{{ trans(key="lang_" ~ l, lang=lang) }}</a><span class="lang-sep"> | </span>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
     </div>
     {% endif %}
 {% endblock title %}

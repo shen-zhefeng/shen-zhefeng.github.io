@@ -20,6 +20,9 @@ title = "Prototype Sam"
 [languages.cn.translations]
 home = "主页"
 last_updated = "最后更新"
+lang_en = "English"
+lang_cn = "中文"
+lang_ja = "日本語"
 
 [languages.ja]
 title = "Prototype Sam"
@@ -27,10 +30,16 @@ title = "Prototype Sam"
 [languages.ja.translations]
 home = "ホーム"
 last_updated = "最終更新"
+lang_en = "English"
+lang_cn = "中文"
+lang_ja = "日本語"
 
 [translations]
 home = "Start"
 last_updated = "Last updated"
+lang_en = "English"
+lang_cn = "中文"
+lang_ja = "日本語"
 
 [markdown]
 # Whether to do syntax highlighting
