@@ -9,6 +9,14 @@
 {% block title %}
     {{ page.title }}
 {% endblock title %}
+{% if page.extra.lang_links %}
+<div class="lang-links">
+    {% for link in page.extra.lang_links %}
+        <a href="{{ link.path }}">{{ link.text }}</a>
+        {% if not loop.last %} | {% endif %}
+    {% endfor %}
+</div>
+{% endif %}
 
 {% block content %}
     {% if not page.extra.no_header %}

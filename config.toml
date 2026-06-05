@@ -14,6 +14,24 @@ compile_sass = true
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = false
 
+[languages.cn]
+title = "Prototype Sam"
+
+[languages.cn.translations]
+home = "主页"
+last_updated = "最后更新"
+
+[languages.ja]
+title = "Prototype Sam"
+
+[languages.ja.translations]
+home = "ホーム"
+last_updated = "最終更新"
+
+[translations]
+home = "Start"
+last_updated = "Last updated"
+
 [markdown]
 # Whether to do syntax highlighting
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
