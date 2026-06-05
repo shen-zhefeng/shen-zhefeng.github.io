@@ -2,7 +2,7 @@
 title = "About"
 [extra]
 no_header = true
-multilingual = true
+lang_links = [{ code = "cn"}]
 +++
 
 

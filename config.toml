@@ -61,11 +61,12 @@ sam_menu = [
         { text = "Name", link = "/about" },
         { text = "Research", link = "/research" },
         { text = "Teaching", link = "/teaching" },
-        { text = "Others", link = "/others" },
+        { text = "CV", link = "/cv" },
         { text = "More", link = "/more" }
 ]
 
 sam_bottom_menu = true
+teaching_draft = true
 
 [extra.sam_footer]
 update_time=true

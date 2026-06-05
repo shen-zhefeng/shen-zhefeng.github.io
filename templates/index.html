@@ -31,11 +31,15 @@
             <div class="section" id="splash">
                 {% if config.extra.sam_menu %}
                     {% for link in config.extra.sam_menu %}
+                        {% if link.text == "Teaching" and config.extra.teaching_draft %}
+                            {# skip #}
+                        {% else %}
                         <div class="big-link">
                             <a href="{{ link.link }}">
                                 {{ link.text }}
                             </a>
                         </div>
+                        {% endif %}
                     {% endfor %}
                 {% else %}
                     {% for current in section.subsections %}
