@@ -25,7 +25,7 @@ build_search_index = false
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
 
 [markdown.highlighting]
-theme = "base16-ocean-dark"
+theme = "dark-plus"
 
 [extra]
 # Put all your custom variables here
