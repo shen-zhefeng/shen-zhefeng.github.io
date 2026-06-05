@@ -61,7 +61,7 @@ sam_menu = [
         { text = "Name", link = "/about" },
         { text = "Research", link = "/research" },
         { text = "Teaching", link = "/teaching" },
-        { text = "CV", link = "/cv" },
+        { text = "CV", link = "/sample.pdf" },
         { text = "More", link = "/more" }
 ]
 
