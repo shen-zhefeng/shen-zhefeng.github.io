@@ -10,7 +10,7 @@ This site is built with a modified [zola-sam](https://github.com/janbaudisch/zol
 (a Zola port of [hugo-theme-sam](https://github.com/victoriadrake/hugo-theme-sam)).
 Source code: [GitHub](https://github.com/shen-zhefeng/shen-zhefeng.github.io).
 
-Developed using [OpenCode](https://opencode.ai) with DeepSeek API (~5.6M tokens).
+Developed using [OpenCode](https://opencode.ai) with DeepSeek API (~7.0M tokens).
 
 ---
 
