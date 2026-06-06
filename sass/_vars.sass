@@ -3,34 +3,43 @@ $font: 'Didact Gothic','sans serif'
 $body-size: 16px
 
 // ═══ CSS custom properties (colors — supports dark/light mode) ═══
-// Dark theme (default)
+
+/* Dark theme (default) */
 :root
     --white: #fff
     --black: #111
     --dark-grey: #39424E
     --dark-blue: #16537E
-    --bg: #111              // page background
-    --text: #fff            // body text
-    --links: #999           // link color
-    --links-hover: #fff     // link hover
-    --code-block: #000004   // code block background
-    --expand-bg: #111       // expandable box background
-    --expand-border: #fff   // expandable box border
-    --expand-hover: #000    // expandable box hover (darken 20% of --expand-bg)
+    // page background
+    --bg: #111
+    // body text
+    --text: #fff
+    // link color
+    --links: #999
+    // link hover
+    --links-hover: #fff
+    // code block background
+    --code-block: #000004
+    // expandable box background
+    --expand-bg: #111
+    // expandable box border
+    --expand-border: #fff
+    // expandable box hover
+    --expand-hover: #000
 
-// Light theme (auto-detected from OS preference)
+/* Light theme (auto-detected from OS preference) */
 @media (prefers-color-scheme: light)
     :root
-        --bg: #fafafa           // page background (soft off-white)
-        --text: #222            // body text (near-black, not pure)
-        --links: #16537E        // link color (dark blue)
-        --links-hover: #000     // link hover
-        --code-block: #f0f0f0   // code block background
-        --expand-bg: #f0f0f0    // expandable box background
-        --expand-border: #ccc   // expandable box border
-        --expand-hover: #ddd    // expandable box hover (lightened)
+        --bg: #fafafa
+        --text: #222
+        --links: #16537E
+        --links-hover: #000
+        --code-block: #f0f0f0
+        --expand-bg: #f0f0f0
+        --expand-border: #ccc
+        --expand-hover: #ddd
 
-// Light theme (manual 3-click easter egg override — takes priority over OS)
+/* Light theme (manual 3-click easter egg override) */
 html.light-mode
     --bg: #fafafa
     --text: #222
@@ -40,3 +49,14 @@ html.light-mode
     --expand-bg: #f0f0f0
     --expand-border: #ccc
     --expand-hover: #ddd
+
+/* Dark theme (manual 3-click easter egg override) */
+html.dark-mode
+    --bg: #111
+    --text: #fff
+    --links: #999
+    --links-hover: #fff
+    --code-block: #000004
+    --expand-bg: #111
+    --expand-border: #fff
+    --expand-hover: #000

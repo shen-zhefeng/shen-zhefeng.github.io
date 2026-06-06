@@ -35,9 +35,9 @@
             (function() {
                 var clicks = 0, timer = null;
                 // Restore saved preference on page load
-                if (localStorage.getItem('color-scheme') === 'light') {
-                    document.documentElement.classList.add('light-mode');
-                }
+                var saved = localStorage.getItem('color-scheme');
+                if (saved === 'light') document.documentElement.classList.add('light-mode');
+                if (saved === 'dark') document.documentElement.classList.add('dark-mode');
                 document.addEventListener('click', function(e) {
                     if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' ||
                         e.target.tagName === 'SUMMARY' || e.target.tagName === 'INPUT') return;
@@ -45,9 +45,17 @@
                     clearTimeout(timer);
                     if (clicks >= 3) {
                         var html = document.documentElement;
-                        html.classList.toggle('light-mode');
-                        var isLight = html.classList.contains('light-mode');
-                        localStorage.setItem('color-scheme', isLight ? 'light' : 'dark');
+                        if (html.classList.contains('light-mode')) {
+                            html.classList.remove('light-mode');
+                            html.classList.add('dark-mode');
+                            localStorage.setItem('color-scheme', 'dark');
+                        } else if (html.classList.contains('dark-mode')) {
+                            html.classList.remove('dark-mode');
+                            localStorage.removeItem('color-scheme');
+                        } else {
+                            html.classList.add('light-mode');
+                            localStorage.setItem('color-scheme', 'light');
+                        }
                         clicks = 0;
                     }
                     timer = setTimeout(function() { clicks = 0; }, 1500);
