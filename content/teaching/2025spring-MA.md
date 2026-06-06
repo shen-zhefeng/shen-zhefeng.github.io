@@ -1,21 +1,34 @@
 +++
-title = "2025spring-MA"
-path="/teaching/2025spring-MA"
+title = "MATH 101: Calculus I"
+path = "/teaching/2025spring-MA"
 +++
-[Homework](#Homework)
 
-中文输入
-## News 
-1. [case 1](@/teaching/2025spring-MA.md).
-  * some details 
-  * <span style="color:red">some *red* text</span>.
+# MATH 101: Calculus I
 
-2. [case 2](@/teaching/2025spring-MA2.md).
+**Semester**: 2025 Spring  
+**Role**: Teaching Assistant  
+**Instructor**: Prof. Name
 
-## Infomations
-## Homework   <a name="Homework"></a>
-|  1 |  2 |
-|---|---|
-|  1 |  [case 2](@/teaching/2025spring-MA2.md), [case 2](@/teaching/2025spring-MA2.md) | 
-|  1 |  [case 2](@/teaching/2025spring-MA2.md) | 
-|  1 |  [case 2](@/teaching/2025spring-MA2.md) | 
+## Announcements
+
+- [2025-01-15] Welcome to the course! See the schedule below.
+- [2025-03-01] Midterm exam date announced: March 20.
+
+## Schedule
+
+| Week | Topic | Materials |
+|---|---|---|
+| 1 | Limits and Continuity | [Notes](/sample.pdf) |
+| 2 | Derivatives | [Notes](/sample.pdf) |
+| 3 | Applications of Derivatives | — |
+
+## Homework
+
+| # | Due Date | Assignment |
+|---|---|---|
+| 1 | 2025-01-22 | Chapter 1, Exercises 1-10 |
+| 2 | 2025-02-05 | Chapter 2, Exercises 1-8 |
+
+## Office Hours
+
+Mondays 14:00&ndash;16:00, Room 301 (or by appointment).
