@@ -18,4 +18,5 @@ jobs:
         env:
           PAGES_BRANCH: gh-pages
           BUILD_ONLY: ${{ github.event_name == 'pull_request' }}
+          CHECK_LINKS: true
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
