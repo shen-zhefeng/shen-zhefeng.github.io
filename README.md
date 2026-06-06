@@ -193,7 +193,7 @@ The CI workflow (`.github/workflows/actions.yml`) auto-deploys to GitHub Pages o
 
 ## Modifications from Original zola-sam
 
-See `AGENTS.md` for the complete inventory. Key changes:
+Key changes:
 
 - Dark theme (`#111` background), light mode via CSS custom properties, 3-click toggle on splash page
 - Zola 0.22 Giallo syntax highlighting (`dark-plus` theme) with line number CSS
