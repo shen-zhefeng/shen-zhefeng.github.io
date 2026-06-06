@@ -6,13 +6,13 @@ title = "Teaching"
 
 | Course | Role | Materials |
 |---|---|---|
-| [Course Name](@/teaching/2025spring-MA.md) | Teaching Assistant | Lecture notes |
+| [Course Example 1](@/teaching/course-example-1.md) | Teaching Assistant | Lecture notes |
 
 ## 2024 Autumn
 
 | Course | Role | Materials |
 |---|---|---|
-| [Course Name](@/teaching/2025spring-MA2.md) | Teaching Assistant | Problem sets |
+| [Course Example 2](@/teaching/course-example-2.md) | Teaching Assistant | Problem sets |
 
 ## Office Hours
 

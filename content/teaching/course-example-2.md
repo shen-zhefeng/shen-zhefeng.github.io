@@ -1,9 +1,9 @@
 +++
-title = "MATH 201: Linear Algebra"
-path = "/teaching/2025spring-MA2"
+title = "Course Example 2"
+path = "/teaching/course-example-2"
 +++
 
-# MATH 201: Linear Algebra
+# Course Example 2
 
 > **Note**: This is a template demo page — not a real course. See `content/more.md` for all template features.
 

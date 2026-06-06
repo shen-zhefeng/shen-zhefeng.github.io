@@ -1,9 +1,9 @@
 +++
-title = "MATH 101: Calculus I"
-path = "/teaching/2025spring-MA"
+title = "Course Example 1"
+path = "/teaching/course-example-1"
 +++
 
-# MATH 101: Calculus I
+# Course Example 1
 
 > **Note**: This is a template demo page — not a real course. See `content/more.md` for all template features.
 
