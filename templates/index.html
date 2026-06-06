@@ -31,6 +31,11 @@
             :root, body { transition: background-color 0.3s ease, color 0.3s ease; }
         </style>
         {% endif %}
+        {% if config.extra.light_mode_style == "blue" %}
+        <style>
+            :root { --links: #16537E !important; }
+        </style>
+        {% endif %}
         <script>
             // Restore saved light/dark mode preference (runs on every page)
             (function() {

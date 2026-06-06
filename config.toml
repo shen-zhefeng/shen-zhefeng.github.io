@@ -89,6 +89,7 @@ sam_bottom_menu = true
 teaching_draft = false
 # google_analytics = "G-XXXXXXXXXX"    # Uncomment and set your tracking ID to enable
 light_mode_transition = true            # Smooth 0.3s fade when switching light/dark. Set false to disable.
+light_mode_style = "grey"               # Link color in light mode: "grey" (#555) or "blue" (#16537E)
 
 [extra.sam_footer]
 update_time=true
