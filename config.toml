@@ -85,6 +85,7 @@ sam_menu = [
 
 sam_bottom_menu = true
 teaching_draft = false
+# google_analytics = "G-XXXXXXXXXX"    # Uncomment and set your tracking ID to enable
 
 [extra.sam_footer]
 update_time=true
