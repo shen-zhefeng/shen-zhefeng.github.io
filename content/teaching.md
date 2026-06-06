@@ -2,31 +2,22 @@
 title = "Teaching"
 +++
 
-Example: Include some teaching material 
-
 ## 2025 Spring
 
-1. [case 1](@/teaching/2025spring-MA.md).
-  * some details 
-  * <span style="color:red">some *red* text</span>.
-
-2. [case 2](@/teaching/2025spring-MA2.md).
-
-Example: table
-|  1 |  2 | 3  | 4  | 5  |
-|---|---|---|---|---|
-|  1 |  2 | 3  | 4  | 5  |
-|  1 |  2 | 3  | 4  | 5  |
-|  1 |  2 | 3  | 4  | 5  |
-   
+| Course | Role | Materials |
+|---|---|---|
+| [Course Name](@/teaching/2025spring-MA.md) | Teaching Assistant | Lecture notes |
 
 ## 2024 Autumn
 
-1. [case 1](@/teaching/2025spring-MA.md).
+| Course | Role | Materials |
+|---|---|---|
+| [Course Name](@/teaching/2025spring-MA2.md) | Teaching Assistant | Problem sets |
 
-Example: code block.
->some details here.
->some details here.
->some details here.
+## Office Hours
 
-2. [case 2](@/teaching/2025spring-MA2.md).
+1. Monday 14:00&ndash;16:00
+2. Wednesday 10:00&ndash;12:00
+3. {% inline_expandable(trigger="by appointment") %}
+Email to schedule. Available Friday afternoons.
+{% end %}
