@@ -1,0 +1,18 @@
+<script>
+    function toggleDetails(btn) {
+        var content = btn.nextElementSibling;
+        if (content.style.display === "none") {
+            content.style.display = "block";
+            btn.classList.add("active");
+        } else {
+            content.style.display = "none";
+            btn.classList.remove("active");
+        }
+    }
+
+    function closeBox(box) {
+        box.style.display = "none";
+        var btn = box.previousElementSibling;
+        if (btn) btn.classList.remove("active");
+    }
+</script>
