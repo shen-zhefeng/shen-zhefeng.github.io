@@ -1,19 +1,27 @@
+// ═══ Base styles — controls the overall look of every page ═══
+
 @import "vars"
 @import "mixins"
 @import "expandable"
 
-
+// Resets default browser margins and padding for all elements
+// Ensures consistent spacing across all browsers
 *
     margin: 0
     padding: 0
     -webkit-box-sizing: border-box
     box-sizing: border-box
 
+// The entire page background color
+// Default: dark (#111), changes to off-white (#fafafa) in light mode
 html
     background-color: var(--bg)
     font-family: $font
     font-size: 16px
 
+// Body text — the main content container
+// Controls: text color, font size, line height, letter spacing
+// flex + column + align-items: center — horizontally centers all content
 body
     font-size: $body-size
     font-family: $font
@@ -27,37 +35,45 @@ body
     align-items: center
     opacity: 1
 
+// All headings (h1, h2, h3) — centered by default
+// opacity 0.6 makes them slightly transparent (subtle, not harsh)
 h1,h2,h3
     margin-bottom: 0.5em
     text-align: center
     font-family: 'Didact Gothic', sans-serif
     opacity: 0.6
 
+// List items — slightly transparent for visual hierarchy
+// vertical-align: top fixes alignment when expandable blocks are inside list items
 li
     opacity: 0.8
     & a
         opacity: 0.9
     .expandable-container
-    // 1. Remove the margin we added earlier
     margin-bottom: 0
-    
-    // 2. This trick often fixes the alignment with the bullet point "1."
     vertical-align: top
 
-// OPTIONAL: If the gap is still huge, it's the paragraph tag causing it.
-// This forces any paragraph containing your button to have no margin.
+// Fixes paragraph spacing inside list items that contain expandable blocks
+// Prevents extra gaps between the trigger line and the content box
 li p:has(.expandable-container)
   margin-bottom: 0
   margin-top: 0
 
+// Removes bullet points from unordered lists at the top level
+// Content-level lists (inside #content) have bullets restyled separately
 ul
     list-style-type: none
 
-// bottom menu paragraph — inline so menu items flow horizontally
+// Paragraphs — displayed inline so menu items flow horizontally in the bottom menu
 p
     display: inline
     opacity: 1
 
+// ═══ Links — the main interactive element on every page ═══
+
+// All links have an underline (border-bottom) that matches the text color
+// On hover, the link brightens to the hover color
+// transition creates a smooth 0.5s color change animation
 a
     color: var(--links)
     text-decoration: none
@@ -69,6 +85,8 @@ a
     &:active
         color: var(--links)
 
+// Buttons — white background with a dark shadow on hover (3D effect)
+// Currently used sparsely, but styled for any <button> element
 button
     padding: 20px
     border: 0px
@@ -77,10 +95,17 @@ button
     &:hover
         box-shadow: 5px 5px var(--black)
 
+// Horizontal rule — thin, centered, slightly transparent
+// Separates sections (e.g., below page title, before bottom menu)
 hr
     +skinny-hr
     opacity: 0.3
 
+// ═══ Page layout — the content wrapper for all non-splash pages ═══
+
+// Centers content horizontally with auto margins
+// 45% width on desktop, full width on mobile (≤736px)
+// max-width: 800px prevents lines from becoming too long on ultra-wide screens
 .wrap
     margin: 0 auto
     margin-top: 6rem
@@ -90,23 +115,32 @@ hr
         padding: 1rem
         width: 100%
 
+// Tag badges container — horizontal row of tag labels
 .tag-container
     display: flex
     flex-direction: row
     justify-content: flex-start
     align-items: center
 
+// Individual tag badge — transparent background, positioned normally
 .tag
     background-color: transparent
     position: relative
     bottom: 0
 
+// ═══ Section — generic container for page sections (title, content, menu, footer) ═══
+
+// Stacked vertically (flex-direction: column), left-aligned
 .section
     display: flex
     flex-direction: column
     justify-content: center
     align-items: flex-start
 
+// ═══ Bottom menu — navigation bar at the bottom of content pages ═══
+
+// Centered, with generous padding above and below
+// Shows the same links as the splash page in a compact horizontal row
 .bottom-menu
     display: flex
     flex-direction: column
@@ -116,6 +150,10 @@ hr
     padding-bottom: 3rem
     text-align: center
 
+// ═══ Footer — the very bottom of every content page ═══
+
+// Centered text, with "Last updated" date if enabled
+// Subtle styling — small font, slightly transparent
 .footer
     width: 100%
     display: flex
@@ -136,7 +174,10 @@ hr
 
 @import "elements"
 
-// Language navigation links below page title
+// ═══ Language navigation — language-switching links below page title ═══
+
+// Small, subtle links (e.g., "english | 中文 | 日本語")
+// Only appears on pages with multilingual = true in frontmatter
 .lang-links
     font-size: 0.9rem
     opacity: 0.6
@@ -145,15 +186,19 @@ hr
         border-bottom: none
         &:hover
             opacity: 1
+    // Hide the last separator (|) to avoid trailing pipe
     .lang-sep:last-of-type
         display: none
 
-// Giallo syntax highlighting (Zola 0.22+)
+// ═══ Giallo syntax highlighting — code block line numbers (Zola 0.22+) ═══
+
+// Wraps each highlighted line in code blocks
 .giallo-l
     display: inline-block
     min-height: 1lh
     width: 100%
 
+// Line number column — non-selectable, slightly transparent, right-aligned
 .giallo-ln
     display: inline-block
     user-select: none
@@ -163,7 +208,7 @@ hr
     text-align: right
     opacity: 0.8
 
-// Helpers
+// ═══ Utility layout helpers ═══
 
 .go-left
     justify-content: flex-start
@@ -177,25 +222,28 @@ hr
     justify-content: center
     align-items: center
 
+// ═══ Native HTML details/summary — built-in expandable (no JavaScript) ═══
 
-
+// Styled as a bordered box with +/- toggle icon
+// Uses CSS custom properties so it adapts to light/dark mode
 details.expand-box
   background: var(--expand-bg)
   border: 1px solid var(--expand-border)
   border-radius: 5px
   margin-bottom: 1rem
-  overflow: hidden // Keeps content inside rounded corners
+  overflow: hidden
 
+  // The clickable summary bar — acts as the trigger
   summary
     padding: 10px 15px
     font-weight: bold
     cursor: pointer
     background-color: var(--expand-hover)
-    list-style: none // Hides default triangle in some browsers
+    list-style: none
     transition: background 0.2s
-    display: block // Ensures padding works correctly
+    display: block
 
-    // The plus icon
+    // Plus icon (right side of summary bar) when collapsed
     &::after
       content: '+'
       float: right
@@ -204,14 +252,15 @@ details.expand-box
     &:hover
       background-color: var(--expand-border)
 
-    // Hide default marker for webkit browsers
+    // Remove default triangle marker for WebKit browsers (Chrome, Safari)
     &::-webkit-details-marker
       display: none
 
-  // Change icon to minus when the box is open
+  // Minus icon when the box is expanded (open state)
   &[open] summary::after
     content: '-'
 
+  // The content area inside the expanded box
   .expand-content
     padding: 15px
     border-top: 1px solid var(--expand-border)

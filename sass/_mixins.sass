@@ -1,3 +1,7 @@
+// ═══ Mixins — reusable Sass patterns ═══
+
+// A thin, centered horizontal rule with no background color
+// Used for section dividers throughout the site
 =skinny-hr
     margin: 1rem 0
     background-color: transparent
@@ -5,5 +9,8 @@
     border-style: solid
     border-width: 1px
 
+// Smooth CSS transition for interactive elements
+// Used on links and expandable triggers
+// $time — duration of the transition (e.g., 0.5s)
 =ease($time)
     transition: $time ease

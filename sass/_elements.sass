@@ -1,3 +1,8 @@
+// ═══ Splash page (homepage) — full-screen centered menu ═══
+
+// Takes the full viewport height (100vh), vertically centers content
+// 45% width on desktop, 90% on mobile
+// overflow: hidden ensures no scrollbar on the splash page
 #splash
     margin: auto 0
     height: 100vh
@@ -7,6 +12,8 @@
     @media screen and (max-width: 736px)
         width: 90%
 
+// Big link items on the splash page (e.g., "Name", "Research", "Teaching")
+// Large font (3rem), lightweight, generous spacing between items
 .big-link
     font-family: $font
     font-size: 3rem
@@ -14,30 +21,43 @@
     margin-bottom: 2rem
     line-height: 1.5em
 
+// ═══ Page title — the heading at the top of content pages ═══
+
+// Larger font (2rem), spaced from the top
 #title
     margin-top: 3rem
     font-family: $font
     font-size: 2rem
     line-height: 3rem
 
+// ═══ Content area — the main body of every content page ═══
+
+// Controls: spacing, line height, letter spacing
+// Contains styles for headings, paragraphs, code blocks,
+// blockquotes, tables, images, and lists within the content area
 #content
     margin: 2rem 0
     line-height: 2em
     letter-spacing: 2px
+    // Content-level divs take full width with bottom spacing
     div
         width: 100%
         height: 100%
         margin-bottom: 1em
+    // Content headings — left-aligned (different from body headings which are centered)
     & h1,h2,h3
         margin: 1em 0em
         text-align: left
+    // Content paragraphs — slightly transparent, with space between paragraphs
     & p
         margin-bottom: 1em
         line-height: 1.8
         letter-spacing: 1.5px
         opacity: 0.8
+    // Syntax-highlighted code blocks
     & .highlight
         width: 100%
+    // Preformatted code blocks — dark background, rounded corners, scrollable
     & pre
         line-height: 2rem
         border-radius: 3px
@@ -46,32 +66,39 @@
         background-color: var(--code-block)
         width: 100%
         margin-bottom: 1em
+    // Code inside pre blocks — no border (the pre itself has the background)
     & pre > code
         border: none
+    // Inline code — monospace font, slightly smaller, with a subtle border
     & code
         font-size: 0.9rem
         font-family: 'Source Code Pro', monospace
         padding: 0.1rem
         border-radius: 3px
         border: 1px solid var(--links)
+    // Images — full width, centered, with generous margin
     & img
         width: 100%
         max-width: 100%
         display: block
         margin: 2rem auto
         opacity: 1
+    // Blockquotes — a colored box with padding, used for quotes and callouts
+    // Background and text colors are inverted (dark text on colored bg)
     & blockquote
         background-color: var(--links)
         color: var(--dark-grey)
         padding: 2rem
         margin: 2rem 1rem 2rem 1rem
         border-radius: 3px
+        // Links inside blockquotes are darker for contrast
         a
             color: var(--black)
         & ul
             margin-top: 1rem
         & li
             list-style: disc
+    // Tables — full width with thin borders, scrollable on narrow screens
     & table
         width: 100%
         border-collapse: collapse
@@ -83,17 +110,21 @@
             padding: 2px 5px
             text-align: center
             border: 1px solid var(--links)
+    // List items in content — adequate spacing, slight indentation
     & li
         line-height: 2
         padding-left: 0.4rem
         &:last-child
             margin-bottom: 1rem
+    // Unordered lists in content — disc markers, indented
     & ul
         list-style: disc outside
         padding-left: 2rem
+    // Ordered lists in content — numbered, indented
     & ol
         list-style: decimal outside
         padding-left: 2rem
+    // GitHub Gist embeds — full width, transparent background, bordered cells
     & .gist
         width: 100%
         td, th
@@ -105,11 +136,16 @@
             & a
                 color: var(--text)
 
+// Tag badges — small, subtle, slightly transparent
 .tag
     padding: 0.25em 0em
     margin-right: 0.5em
     opacity: 0.6
 
+// ═══ Grid layout — for image galleries ═══
+
+// Responsive grid: items are at least 400px wide, auto-fill rows
+// On mobile (≤736px), items take full width
 .grid
     display: grid
     grid-gap: 20px
@@ -118,10 +154,12 @@
     @media screen and (max-width: 736px)
         grid-template-columns: repeat(auto-fit, minmax(100%, 1fr))
 
+// Grid items — transparent background, hidden overflow
 .grid > div
     background-color: transparent
     overflow: hidden
 
+// Images inside grid items — cover the cell, maintain aspect ratio
 .grid > div > img
     height: 100%
     width: 100%
