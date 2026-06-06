@@ -33,7 +33,10 @@
         {% endif %}
         {% if config.extra.light_mode_style == "blue" %}
         <style>
-            :root { --links: #16537E !important; }
+            @media (prefers-color-scheme: light) {
+                :root { --links: #16537E !important; }
+            }
+            html.light-mode { --links: #16537E !important; }
         </style>
         {% endif %}
         <script>
