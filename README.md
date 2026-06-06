@@ -2,6 +2,8 @@
 
 A Zola template for academic personal websites, modified from [zola-sam](https://github.com/janbaudisch/zola-sam) (a Zola port of [hugo-theme-sam](https://github.com/victoriadrake/hugo-theme-sam)).
 
+Developed using [OpenCode](https://opencode.ai) with DeepSeek API (~5.6M tokens).
+
 ## Features
 
 - **Dark & light mode** — auto-detects OS preference, manual 3-click override

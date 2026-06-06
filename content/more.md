@@ -4,6 +4,16 @@ title = "More"
 no_header = true
 +++
 
+# About This Template
+
+This site is built with a modified [zola-sam](https://github.com/janbaudisch/zola-sam) theme
+(a Zola port of [hugo-theme-sam](https://github.com/victoriadrake/hugo-theme-sam)).
+Source code: [GitHub](https://github.com/shen-zhefeng/shen-zhefeng.github.io).
+
+Developed using [OpenCode](https://opencode.ai) with DeepSeek API (~5.6M tokens).
+
+---
+
 # Template Reference
 
 Quick reference for all features in this template.
