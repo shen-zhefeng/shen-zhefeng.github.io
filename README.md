@@ -6,7 +6,7 @@ Developed using [OpenCode](https://opencode.ai) with DeepSeek API (~5.6M tokens)
 
 ## Features
 
-- **Dark & light mode** — auto-detects OS preference, manual 3-click override
+- **Dark & light mode** — auto-detects OS preference, manual 3-click override on the splash page
 - **KaTeX math rendering** — self-hosted, `$...$` inline + `$$...$$` display
 - **Multilingual** — EN, CN, JA with automatic language buttons
 - **Expandable blocks** — collapsible content for paper abstracts, course details
@@ -61,7 +61,7 @@ sam_menu = [
     { text = "Name", link = "/about" },
     { text = "Research", link = "/research" },
     { text = "Teaching", link = "/teaching" },
-    { text = "CV", link = "/cv.pdf" },
+    { text = "CV", link = "/sample.pdf" },
     { text = "More", link = "/more" }
 ]
 ```
@@ -80,6 +80,15 @@ multilingual = true
 
 Pages without translations automatically return 404.
 
+For granular control over which languages appear, use `lang_links`:
+
+```toml
+[extra]
+lang_links = [{ code = "cn" }]                    # Only CN button, default text "中文"
+lang_links = [{ code = "cn", text = "中文版" }]    # Custom text override
+lang_links = [{ code = "cn" }, { code = "ja" }]   # CN + JA, both defaults
+```
+
 Customize language button text in `[translations]`:
 
 ```toml
@@ -91,7 +100,7 @@ lang_ja = "日本語"
 
 ### Teaching Toggle
 
-Set `teaching_draft = true` to hide the Teaching section. Combine with `draft = true` in each teaching content file for a complete hide.
+Set `teaching_draft = true` to hide the Teaching section from navigation. To also hide the pages from build (URL returns 404), add `draft = true` to the frontmatter of each teaching file: `content/teaching.md`, `content/teaching/_index.cn.md`, `content/teaching/course-example-1.md`, and `content/teaching/course-example-2.md`.
 
 ### Light Mode
 
@@ -120,11 +129,14 @@ text = ""                          # Optional footer text
 Each page is a Markdown file in `content/`:
 
 | File | Purpose |
-|---|---|
-| `_index.md` | Homepage (splash) |
+|---|---|---|
+| `_index.md` | Homepage splash (EN) |
+| `_index.cn.md` | Homepage splash (CN) |
+| `_index.ja.md` | Homepage splash (JA) |
 | `about.md` | Bio, contact, social links |
 | `research.md` | Publications with expandable abstracts |
 | `teaching.md` | Course schedule, office hours |
+| `cv.md` | CV page (or link to PDF — see menu config) |
 | `more.md` | Template feature reference |
 
 Reference pages:
@@ -171,25 +183,29 @@ Custom macros (e.g., `\GL`) defined in `templates/index.html`.
 
 ```bash
 git checkout dev     # template branch
-zola serve           # live preview
-./test.sh            # smoke test (build + link check)
+zola serve           # live preview (http://127.0.0.1:1111)
+zola build           # production build
+zola check           # check internal links
+./test.sh            # smoke test (build + draft build + link check)
 ```
 
-Branch strategy: `dev` (template) → `main` (production). Pushes to `main` auto-deploy to GitHub Pages via CI.
+The CI workflow (`.github/workflows/actions.yml`) auto-deploys to GitHub Pages on every push to `main` using `shalzz/zola-deploy-action`. PRs to `main` run build + link check only (no deploy).
 
 ## Modifications from Original zola-sam
 
 See `AGENTS.md` for the complete inventory. Key changes:
 
-- Dark theme (`#111` background), light mode via CSS variables
-- Zola 0.22 Giallo syntax highlighting (`dark-plus` theme)
+- Dark theme (`#111` background), light mode via CSS custom properties, 3-click toggle on splash page
+- Zola 0.22 Giallo syntax highlighting (`dark-plus` theme) with line number CSS
 - KaTeX self-hosted with custom macros
 - 4 custom expandable/toggle shortcodes
-- Multilingual support (EN/CN/JA) with auto language buttons
-- Footer "Last updated" date
-- CI/CD for GitHub Pages deploy
-- Max-width 800px for readability
+- Multilingual support (EN/CN/JA) with auto language buttons and manual `lang_links` override
+- Teaching toggle (`teaching_draft`) to hide the Teaching section
+- Footer "Last updated" date with i18n date format
+- CI/CD for GitHub Pages deploy with PR link check
+- Max-width 800px for readability on large screens
 - Google Analytics support (disabled by default)
+- Test page (`content/test.md`, draft) — exhaustive reference for all features
 
 ## License
 
