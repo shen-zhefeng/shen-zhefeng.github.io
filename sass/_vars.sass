@@ -1,14 +1,42 @@
-$white: #fff
-$black: #111
-$dark-grey: #39424E
-$dark-blue: #16537E
-
+// ═══ Sass variables (non-color, used for typography and spacing) ═══
 $font: 'Didact Gothic','sans serif'
-$background: $black
 $body-size: 16px
-$body-text: $white
 
-$links: darken($body-text, 40%)
-$links-hover: $white
+// ═══ CSS custom properties (colors — supports dark/light mode) ═══
+// Dark theme (default)
+:root
+    --white: #fff
+    --black: #111
+    --dark-grey: #39424E
+    --dark-blue: #16537E
+    --bg: #111              // page background
+    --text: #fff            // body text
+    --links: #999           // link color
+    --links-hover: #fff     // link hover
+    --code-block: #000004   // code block background
+    --expand-bg: #111       // expandable box background
+    --expand-border: #fff   // expandable box border
+    --expand-hover: #000    // expandable box hover (darken 20% of --expand-bg)
 
-$code-block: #000004
+// Light theme (auto-detected from OS preference)
+@media (prefers-color-scheme: light)
+    :root
+        --bg: #fafafa           // page background (soft off-white)
+        --text: #222            // body text (near-black, not pure)
+        --links: #16537E        // link color (dark blue)
+        --links-hover: #000     // link hover
+        --code-block: #f0f0f0   // code block background
+        --expand-bg: #f0f0f0    // expandable box background
+        --expand-border: #ccc   // expandable box border
+        --expand-hover: #ddd    // expandable box hover (lightened)
+
+// Light theme (manual 3-click easter egg override — takes priority over OS)
+html.light-mode
+    --bg: #fafafa
+    --text: #222
+    --links: #16537E
+    --links-hover: #000
+    --code-block: #f0f0f0
+    --expand-bg: #f0f0f0
+    --expand-border: #ccc
+    --expand-hover: #ddd

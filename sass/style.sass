@@ -10,14 +10,14 @@
     box-sizing: border-box
 
 html
-    background-color: $background
+    background-color: var(--bg)
     font-family: $font
     font-size: 16px
 
 body
     font-size: $body-size
     font-family: $font
-    color: $body-text
+    color: var(--text)
     line-height: 2rem
     letter-spacing: 1.5px
     text-shadow: none
@@ -53,29 +53,29 @@ li p:has(.expandable-container)
 ul
     list-style-type: none
 
-//bottom menu setting
+// bottom menu paragraph — inline so menu items flow horizontally
 p
     display: inline
     opacity: 1
 
 a
-    color: $links
+    color: var(--links)
     text-decoration: none
-    border-bottom: 2px solid $links
+    border-bottom: 2px solid var(--links)
     +ease(0.5s)
     &:hover
-        color: $links-hover
+        color: var(--links-hover)
         font-style: none
     &:active
-        color: $links
+        color: var(--links)
 
 button
     padding: 20px
     border: 0px
     border-radius: 5px
-    background: $white
+    background: var(--white)
     &:hover
-        box-shadow: 5px 5px $black
+        box-shadow: 5px 5px var(--black)
 
 hr
     +skinny-hr
@@ -180,8 +180,8 @@ hr
 
 
 details.expand-box
-  background: #f9f9f9
-  border: 1px solid #ddd
+  background: var(--expand-bg)
+  border: 1px solid var(--expand-border)
   border-radius: 5px
   margin-bottom: 1rem
   overflow: hidden // Keeps content inside rounded corners
@@ -190,7 +190,7 @@ details.expand-box
     padding: 10px 15px
     font-weight: bold
     cursor: pointer
-    background-color: #f0f0f0
+    background-color: var(--expand-hover)
     list-style: none // Hides default triangle in some browsers
     transition: background 0.2s
     display: block // Ensures padding works correctly
@@ -202,7 +202,7 @@ details.expand-box
       font-weight: bold
 
     &:hover
-      background-color: #e5e5e5
+      background-color: var(--expand-border)
 
     // Hide default marker for webkit browsers
     &::-webkit-details-marker
@@ -214,5 +214,5 @@ details.expand-box
 
   .expand-content
     padding: 15px
-    border-top: 1px solid #ddd
-    background: #fff
+    border-top: 1px solid var(--expand-border)
+    background: var(--white)
