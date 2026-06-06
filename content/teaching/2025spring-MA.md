@@ -5,6 +5,8 @@ path = "/teaching/2025spring-MA"
 
 # MATH 101: Calculus I
 
+> **Note**: This is a template demo page — not a real course. See `content/more.md` for all template features.
+
 **Semester**: 2025 Spring  
 **Role**: Teaching Assistant  
 **Instructor**: Prof. Name
