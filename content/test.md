@@ -262,3 +262,54 @@ No JavaScript required. Built into all modern browsers.
 ## Horizontal Rule
 
 ---
+
+## Multilingual
+
+Add `multilingual = true` to a page's frontmatter to show language buttons for all non-current languages:
+
+```toml
++++
+title = "About"
+[extra]
+multilingual = true
++++
+```
+
+On `/about/`, shows: `中文 | 日本語` (n−1 buttons, never a self-link).
+On `/cn/about/`, shows: `English | 日本語`.
+
+### Custom lang_links
+
+```toml
+[extra]
+lang_links = [{ code = "cn" }]                    # only CN button, default text
+lang_links = [{ code = "cn", text = "中文版" }]    # custom button text
+lang_links = [{ code = "cn" }, { code = "ja" }]   # CN + JA, both defaults
+```
+
+Language name defaults are in `config.toml` `[translations]`:
+```toml
+lang_en = "English"
+lang_cn = "中文"
+lang_ja = "日本語"
+```
+
+Create translated pages as `about.cn.md`, `about.ja.md` with the same slug. Untranslated pages → 404.
+
+## Light / Dark Mode
+
+- Follows OS `prefers-color-scheme` setting automatically
+- **Triple-click** on the splash page (homepage) to force toggle: OS → light → dark → OS
+- Preference saved via `localStorage` — persists across visits
+- Smooth transition: `light_mode_transition = true` in `config.toml` `[extra]`. Set `false` for instant switch
+
+## Teaching Toggle
+
+```toml
+[extra]
+teaching_draft = true   # hide Teaching from menu
+```
+
+Combine with `draft = true` in each teaching content file for a complete hide from build.
+
+To restore: reverse both settings.
