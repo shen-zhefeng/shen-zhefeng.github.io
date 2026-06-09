@@ -11,7 +11,7 @@ Developed using [OpenCode](https://opencode.ai) with DeepSeek API (~7.0M tokens)
 - **Multilingual** — EN, CN, JA with automatic language buttons
 - **Expandable blocks** — collapsible content for paper abstracts, course details
 - **Syntax highlighting** — VSCode-style `dark-plus` theme (Giallo)
-- **Custom shortcodes** — 4 toggle types (expandable, inline_expandable, toggle, <details>)
+- **Custom shortcodes** — 3 types: expandable, inline_expandable, toggle (plus native `<details>`)
 - **Google Analytics** — built-in, disabled by default
 - **Responsive** — mobile-friendly with proper spacing
 
@@ -199,7 +199,7 @@ Key changes:
 - Dark theme (`#111` background), light mode via CSS custom properties, 3-click toggle on splash page
 - Zola 0.22 Giallo syntax highlighting (`dark-plus` theme) with line number CSS
 - KaTeX self-hosted with custom macros
-- 4 custom expandable/toggle shortcodes
+- 3 custom shortcodes (expandable, inline_expandable, toggle) plus native `<details>`
 - Multilingual support (EN/CN/JA) with auto language buttons and manual `lang_links` override
 - Teaching toggle (`teaching_draft`) to hide the Teaching section
 - Footer "Last updated" date with i18n date format
