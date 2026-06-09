@@ -3,7 +3,7 @@
         {{ trigger }}
     </button>
     
-    <span class="inline_expandable-content" style="display: none;" onclick="closeBox(this)">
+    <div class="inline_expandable-content" style="display: none;" onclick="closeBox(this)">
         {{ body | markdown | safe }}
-    </span>
+    </div>
 </span>

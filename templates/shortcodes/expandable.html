@@ -5,7 +5,7 @@
     {% set underline_class = " no-underline" %}
 {% endif %}
 <button class="expandable-trigger{{underline_class}}" onclick="toggleDetails(this)">
-    {{ trigger | markdown | safe}}
+    {{ trigger }}
 </button>
 <div class="expandable-content" style="display: none;" onclick="closeBox(this)">
     {{ body | markdown | safe }}

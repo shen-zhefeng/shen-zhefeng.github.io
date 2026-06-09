@@ -97,13 +97,16 @@ Explanation or proof of the theorem.
 
 ---
 
-## Toggle & Toggle-Block
+## `<details>` (native expandable)
 
-Click this toggle — {% toggle(id="ref1", text="Show details") %} — to reveal content.
+Use the browser's built-in `<details>` element — no JavaScript needed.
 
-{% toggle-block(id="ref1") %}
-This block appears/disappears. Supports **Markdown**.
-{% end %}
+<details>
+<summary>Click to expand</summary>
+
+Hidden content with **Markdown** support.
+
+</details>
 
 ---
 

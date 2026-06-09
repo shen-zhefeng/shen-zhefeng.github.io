@@ -11,7 +11,7 @@ Developed using [OpenCode](https://opencode.ai) with DeepSeek API (~7.0M tokens)
 - **Multilingual** — EN, CN, JA with automatic language buttons
 - **Expandable blocks** — collapsible content for paper abstracts, course details
 - **Syntax highlighting** — VSCode-style `dark-plus` theme (Giallo)
-- **Custom shortcodes** — 4 toggle types (expandable, inline_expandable, toggle, toggle-block)
+- **Custom shortcodes** — 4 toggle types (expandable, inline_expandable, toggle, <details>)
 - **Google Analytics** — built-in, disabled by default
 - **Responsive** — mobile-friendly with proper spacing
 
@@ -155,13 +155,14 @@ Hidden content with **Markdown**.
 
 Parameters: `trigger` (required), `header` (line above trigger), `underline` (false = no dashed border).
 
-### Toggle & Toggle-Block
+### Native `<details>`
 
 ```markdown
-{% toggle(id="x", text="Click me") %}
-{% toggle-block(id="x") %}
-Hidden content.
-{% end %}
+<details>
+<summary>Click to expand</summary>
+Hidden content with **Markdown**.
+</details>
+```
 ```
 
 ### Inline Expandable (popover)

@@ -198,16 +198,19 @@ Hidden content with **Markdown**, [links](https://example.com), and lists:
 The trigger link above has no dashed underline.
 {% end %}
 
-### `toggle` + `toggle-block` (named pair)
+### `<details>` (native expandable)
 
-Click this toggle: {% toggle(id="demo", text="Show details") %}
+Use the browser's built-in element — no JavaScript needed.
 
-{% toggle-block(id="demo") %}
-This block appears/disappears when clicking the toggle above.
+<details>
+<summary>Click to expand</summary>
 
-- Supports `inline code`, **bold**, *italic*
-- Nested content works
-{% end %}
+This content expands and collapses with **zero** JavaScript.
+
+- Works everywhere
+- Accessible by default
+
+</details>
 
 ### `inline_expandable` (inline popover)
 

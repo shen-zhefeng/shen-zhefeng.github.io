@@ -1,4 +1,4 @@
-<span class="toggle" onclick="toggleBlock('{{ id }}')">
+<span class="inline-toggle" role="button" tabindex="0" onclick="toggleBlock('{{ id }}')" onkeydown="if(event.key==='Enter'||event.key===' ')toggleBlock('{{ id }}')">
     {{ text }}
 </span>
 
