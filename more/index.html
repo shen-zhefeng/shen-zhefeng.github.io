@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="referrer" content="no-referrer">
+        <link rel="icon" type="image/x-icon" href="/faviconblack.ico">
+        <link rel="stylesheet" href="https://shen-zhefeng.github.io/fonts.css">
+        <link rel="stylesheet" href="https://shen-zhefeng.github.io/style.css">
+        <link rel="stylesheet" href="https://shen-zhefeng.github.io/katex/katex.min.css">
+        <script defer src="https://shen-zhefeng.github.io/katex/katex.min.js"></script>
+        <script defer src="https://shen-zhefeng.github.io/katex/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body,{delimiters:[
+              {left:'$$',right:'$$',display:true},
+              {left:'$',right:'$',display:false}
+            ],macros:{'\\GL':'\\operatorname{GL}'}});"></script>
+
+        <title>
+    More
+</title>
+
+            
+        <script>
+    function toggleDetails(btn) {
+        var content = btn.nextElementSibling;
+        if (content.style.display === "none") {
+            content.style.display = "block";
+            btn.classList.add("active");
+        } else {
+            content.style.display = "none";
+            btn.classList.remove("active");
+        }
+    }
+
+    function closeBox(box) {
+        box.style.display = "none";
+        var btn = box.previousElementSibling;
+        if (btn) btn.classList.remove("active");
+    }
+</script>
+
+        
+        <style>
+            :root, body { transition: background-color 0.3s ease, color 0.3s ease; }
+        </style>
+        
+        
+        <script>
+            // Restore saved light/dark mode preference (runs on every page)
+            (function() {
+                var saved = localStorage.getItem('color-scheme');
+                if (saved === 'light') document.documentElement.classList.add('light-mode');
+                if (saved === 'dark') document.documentElement.classList.add('dark-mode');
+            })();
+        </script>
+        
+    </head>
+    <body>
+        
+    <div class="wrap">
+        <div class="section" id="title">
+            
+    More
+    
+
+        </div>
+        <div class="section" id="sections">
+            
+        </div>
+        <div class="section" id="content">
+            
+    
+    <h1 id="about-this-template">About This Template</h1>
+<p>This site is built with a modified <a rel="external" href="https://github.com/janbaudisch/zola-sam">zola-sam</a> theme
+(a Zola port of <a rel="external" href="https://github.com/victoriadrake/hugo-theme-sam">hugo-theme-sam</a>).
+Source code: <a rel="external" href="https://github.com/shen-zhefeng/shen-zhefeng.github.io">GitHub</a>.</p>
+<p>Developed using <a rel="external" href="https://opencode.ai">OpenCode</a> with DeepSeek API.</p>
+<hr />
+<h1 id="template-reference">Template Reference</h1>
+<p>Quick reference for all features in this template.
+For the <strong>exhaustive</strong> version with every pattern, see <code>content/test.md</code> (preview with <code>zola serve --drafts</code>).</p>
+<hr />
+<h2 id="markdown-basics">Markdown Basics</h2>
+<h3 id="text-formatting">Text Formatting</h3>
+<p><strong>Bold</strong> uses <code>**double asterisks**</code>. <em>Italic</em> uses <code>*single asterisks*</code>. <code>Inline code</code> uses <code>`backticks`</code>.</p>
+<h3 id="horizontal-rule">Horizontal Rule</h3>
+<p>Three dashes on a blank line create a horizontal rule:</p>
+<pre class="giallo" style="color: #D4D4D4; background-color: #1E1E1E;"><code data-lang="plain"><span class="giallo-l"><span>---</span></span></code></pre>
+<p>Looks like this:</p>
+<hr />
+<h3 id="lists">Lists</h3>
+<p>Ordered (numbered):</p>
+<ol>
+<li>First item</li>
+<li>Second item
+<ol>
+<li>Nested item</li>
+<li>Another nested</li>
+</ol>
+</li>
+</ol>
+<p>Unordered (bullets):</p>
+<ul>
+<li>Bullet one</li>
+<li>Bullet two</li>
+</ul>
+<h3 id="links">Links</h3>
+<ul>
+<li><a href="/about">Internal page link</a></li>
+<li><a rel="external" href="https://example.com">External link</a></li>
+<li><a href="/sample.pdf">PDF download</a></li>
+</ul>
+<hr />
+<h2 id="math-katex">Math (KaTeX)</h2>
+<p>Write <code>$...$</code> for inline, <code>$$...$$</code> for display math.<br />
+Escape <code>_</code> as <code>\_</code> inside math (e.g., <code>$\GL\_n$</code>) — Zola's Markdown parser treats bare <code>_</code> as italics.</p>
+<h3 id="inline">Inline</h3>
+<p>$f$ on $\GL_n(\mathbb{A}_\mathbb{Q})$</p>
+<h3 id="display">Display</h3>
+<p>$$\zeta(s) = \sum_{n=1}^\infty \frac{1}{n^s}$$</p>
+<h3 id="common-symbols">Common Symbols</h3>
+<table><thead><tr><th>You type</th><th>Result</th></tr></thead><tbody>
+<tr><td><code>\mathbb{Z}, \mathbb{Q}, \mathbb{R}, \mathbb{C}</code></td><td>$\mathbb{Z}, \mathbb{Q}, \mathbb{R}, \mathbb{C}$</td></tr>
+<tr><td><code>\sum, \prod, \int</code></td><td>$\sum, \prod, \int$</td></tr>
+<tr><td><code>\leq, \geq, \cong</code></td><td>$\leq, \geq, \cong$</td></tr>
+<tr><td><code>\alpha, \beta, \Gamma</code></td><td>$\alpha, \beta, \Gamma$</td></tr>
+</tbody></table>
+<hr />
+<h2 id="expandable-blocks">Expandable Blocks</h2>
+<h3 id="basic-click-to-show-hide">Basic (click to show/hide)</h3>
+<div class="expandable-container">
+
+
+
+<button class="expandable-trigger" onclick="toggleDetails(this)">
+    Click for abstract
+</button>
+<div class="expandable-content" style="display: none;" onclick="closeBox(this)">
+    <p>Hidden content with <strong>Markdown</strong> and <a rel="external" href="https://example.com">links</a>.</p>
+
+</div>
+</div>
+<h3 id="no-underline">No underline</h3>
+<div class="expandable-container">
+
+
+
+    
+
+<button class="expandable-trigger no-underline" onclick="toggleDetails(this)">
+    Plain text trigger
+</button>
+<div class="expandable-content" style="display: none;" onclick="closeBox(this)">
+    <p>The trigger link above has no dashed border.</p>
+
+</div>
+</div>
+<h3 id="with-header-line-above-trigger">With header (line above trigger)</h3>
+<div class="expandable-container">
+<p><strong>Theorem.</strong> Your statement here.</p>
+
+
+
+<button class="expandable-trigger" onclick="toggleDetails(this)">
+    Click for theorem
+</button>
+<div class="expandable-content" style="display: none;" onclick="closeBox(this)">
+    <p>Explanation or proof of the theorem.</p>
+
+</div>
+</div>
+<hr />
+<h2 id="details-native-expandable"><code>&lt;details&gt;</code> (native expandable)</h2>
+<p>Use the browser's built-in <code>&lt;details&gt;</code> element — no JavaScript needed.</p>
+<details>
+<summary>Click to expand</summary>
+<p>Hidden content with <strong>Markdown</strong> support.</p>
+</details>
+<hr />
+<h2 id="inline-expandable-popover">Inline Expandable (popover)</h2>
+<p>Text with an <span class="inline_expandable-container">
+    <button class="inline_expandable-trigger" onclick="toggleDetails(this)">
+        inline note
+    </button>
+    
+    <div class="inline_expandable-content" style="display: none;" onclick="closeBox(this)">
+        <p>extra info floating right here.</p>
+
+    </div>
+</span> in the middle of a sentence.</p>
+<hr />
+<h2 id="syntax-highlighting-dark-plus-theme">Syntax Highlighting (<code>dark-plus</code> theme)</h2>
+<h3 id="python">Python</h3>
+<pre class="giallo" style="color: #D4D4D4; background-color: #1E1E1E;"><code data-lang="python"><span class="giallo-l"><span style="color: #569CD6;">def</span><span style="color: #DCDCAA;"> prime_sieve</span><span>(</span><span style="color: #9CDCFE;">n</span><span>:</span><span style="color: #4EC9B0;"> int</span><span>) -&gt; list[</span><span style="color: #4EC9B0;">int</span><span>]:</span></span>
+<span class="giallo-l"><span>    is_prime = [</span><span style="color: #569CD6;">True</span><span>] * (n +</span><span style="color: #B5CEA8;"> 1</span><span>)</span></span>
+<span class="giallo-l"><span>    is_prime[</span><span style="color: #B5CEA8;">0</span><span>] = is_prime[</span><span style="color: #B5CEA8;">1</span><span>] =</span><span style="color: #569CD6;"> False</span></span>
+<span class="giallo-l"><span style="color: #C586C0;">    for</span><span> p</span><span style="color: #C586C0;"> in</span><span style="color: #DCDCAA;"> range</span><span>(</span><span style="color: #B5CEA8;">2</span><span>,</span><span style="color: #4EC9B0;"> int</span><span>(n**</span><span style="color: #B5CEA8;">0.5</span><span>) +</span><span style="color: #B5CEA8;"> 1</span><span>):</span></span>
+<span class="giallo-l"><span style="color: #C586C0;">        if</span><span> is_prime[p]:</span></span>
+<span class="giallo-l"><span style="color: #C586C0;">            for</span><span> m</span><span style="color: #C586C0;"> in</span><span style="color: #DCDCAA;"> range</span><span>(p * p, n +</span><span style="color: #B5CEA8;"> 1</span><span>, p):</span></span>
+<span class="giallo-l"><span>                is_prime[m] =</span><span style="color: #569CD6;"> False</span></span>
+<span class="giallo-l"><span style="color: #C586C0;">    return</span><span> [p</span><span style="color: #C586C0;"> for</span><span> p</span><span style="color: #C586C0;"> in</span><span style="color: #DCDCAA;"> range</span><span>(</span><span style="color: #B5CEA8;">2</span><span>, n +</span><span style="color: #B5CEA8;"> 1</span><span>)</span><span style="color: #C586C0;"> if</span><span> is_prime[p]]</span></span></code></pre><h3 id="latex">LaTeX</h3>
+<pre class="giallo" style="color: #D4D4D4; background-color: #1E1E1E;"><code data-lang="latex"><span class="giallo-l"><span style="color: #C586C0;">\documentclass</span><span>{</span><span style="color: #4EC9B0;">amsart</span><span>}</span></span>
+<span class="giallo-l"><span style="color: #C586C0;">\usepackage</span><span>{</span><span style="color: #4EC9B0;">amsmath, amssymb</span><span>}</span></span>
+<span class="giallo-l"><span style="color: #569CD6;">\newcommand</span><span>{</span><span style="color: #DCDCAA;">\GL</span><span>}{</span><span style="color: #DCDCAA;">\operatorname</span><span>{</span><span style="color: #9CDCFE;">GL</span><span>}}</span></span></code></pre><h3 id="bash">Bash</h3>
+<pre class="giallo" style="color: #D4D4D4; background-color: #1E1E1E;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #DCDCAA;">zola</span><span style="color: #CE9178;"> serve</span><span style="color: #6A9955;">           # live preview</span></span>
+<span class="giallo-l"><span style="color: #DCDCAA;">zola</span><span style="color: #CE9178;"> build</span><span style="color: #6A9955;">           # production build</span></span>
+<span class="giallo-l"><span style="color: #DCDCAA;">zola</span><span style="color: #CE9178;"> check</span><span style="color: #6A9955;">           # check links</span></span></code></pre><h3 id="toml">TOML</h3>
+<pre class="giallo" style="color: #D4D4D4; background-color: #1E1E1E;"><code data-lang="toml"><span class="giallo-l"><span>[markdown.highlighting]</span></span>
+<span class="giallo-l"><span style="color: #9CDCFE;">theme</span><span> =</span><span style="color: #CE9178;"> &quot;dark-plus&quot;</span></span></code></pre>
+<hr />
+<h2 id="tables">Tables</h2>
+<table><thead><tr><th>Header A</th><th>Header B</th></tr></thead><tbody>
+<tr><td>Cell 1</td><td>Cell 2</td></tr>
+<tr><td>Cell 3</td><td>Cell 4</td></tr>
+</tbody></table>
+<hr />
+<h2 id="blockquotes">Blockquotes</h2>
+<blockquote>
+<p>Mathematics is the art of giving the same name to different things.
+— Henri Poincaré</p>
+</blockquote>
+<hr />
+<h2 id="native-details-no-javascript">Native <code>&lt;details&gt;</code> (no JavaScript)</h2>
+<details>
+<summary>Click to expand</summary>
+<p>This uses the browser's built-in expand/collapse. No JavaScript.
+Works everywhere.</p>
+</details>
+<hr />
+<h2 id="unicode-symbols-no-latex-needed">Unicode Symbols (no LaTeX needed)</h2>
+<p>For simple symbols, you can use HTML entities or paste directly:</p>
+<p><code>&amp;rarr;</code> → → <code>&amp;le;</code> → ≤ <code>&amp;infin;</code> → ∞<br />
+Subscripts: <code>GL&lt;sub&gt;n&lt;/sub&gt;</code> → GL<sub>n</sub></p>
+
+
+        </div>
+        
+    <div class="section bottom-menu">
+        <hr/>
+        <p>
+            
+                
+                    
+                    <a href="&#x2F;about">Name</a>
+                    &#183;
+                    
+                
+                    
+                    <a href="&#x2F;research">Research</a>
+                    &#183;
+                    
+                
+                    
+                    <a href="&#x2F;teaching">Teaching</a>
+                    &#183;
+                    
+                
+                    
+                    <a href="&#x2F;sample.pdf">CV</a>
+                    &#183;
+                    
+                
+                    
+                    <a href="&#x2F;more">More</a>
+                    &#183;
+                    
+                
+            
+            <a href="https:&#x2F;&#x2F;shen-zhefeng.github.io&#x2F;">
+                Start
+            </a>
+        </p>
+    </div>
+
+        
+    
+        <div class="section footer">
+            
+            
+            Last updated
+             June 10, 2026
+            
+        </div>
+    
+
+    </div>
+
+    </body>
+</html>
