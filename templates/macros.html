@@ -109,7 +109,15 @@
 {% macro footer() %}
     {% if config.extra.sam_footer %}
         <div class="section footer">
-            {{ config.extra.sam_footer.text | safe }}
+            {# A plain string appears in every language; a table selects the page language. #}
+            {% set footer_text = config.extra.sam_footer.text %}
+            {% if footer_text is string %}
+                {{ footer_text | safe }}
+            {% elif lang in footer_text %}
+                {{ footer_text[lang] | safe }}
+            {% elif footer_text.en %}
+                {{ footer_text.en | safe }}
+            {% endif %}
             {% if config.extra.sam_footer.update_time %}
             {{ trans(key="last_updated", lang=lang) }}
              {{ now() | date(format=trans(key="date_format", lang=lang)) }}

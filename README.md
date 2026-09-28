@@ -153,8 +153,16 @@ Tracking is disabled by default. In `[extra]`, uncomment the following setting a
 ```toml
 [extra.sam_footer]
 update_time = true                 # Show the date the site was built
-text = ""                          # Optional footer text
+text = ""                          # Optional text shown in every language
 ```
+
+To show different footer text for each language, replace the `text` line with a table. The language codes match the site's English, Chinese, and Japanese versions:
+
+```toml
+text = { en = "Under construction.", cn = "网站建设中。", ja = "サイト準備中。" }
+```
+
+If a page's language is missing from this table, the English text is used. Keep `text = ""` when no extra footer message is needed.
 
 ## Customizing the Appearance
 
