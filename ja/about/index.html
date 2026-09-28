@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="referrer" content="no-referrer">
+        <link id="site-favicon" rel="icon" type="image/x-icon"
+            href="https://shen-zhefeng.github.io/faviconblack.ico"
+            data-dark-href="https://shen-zhefeng.github.io/faviconblack.ico"
+            data-light-href="https://shen-zhefeng.github.io/faviconwhite.ico">
+        <link rel="stylesheet" href="https://shen-zhefeng.github.io/fonts.css">
+        <link rel="stylesheet" href="https://shen-zhefeng.github.io/style.css">
+        <link rel="stylesheet" href="https://shen-zhefeng.github.io/katex/katex.min.css">
+        <script defer src="https://shen-zhefeng.github.io/js/table-scroll.js"></script>
+        <script defer src="https://shen-zhefeng.github.io/katex/katex.min.js"></script>
+        <script defer src="https://shen-zhefeng.github.io/katex/contrib/auto-render.min.js"
+            onload="initializeInlinePopovers();renderMathInElement(document.body,{delimiters:[
+              {left:'$$',right:'$$',display:true},
+              {left:'$',right:'$',display:false}
+            ],macros:{'\\GL':'\\operatorname{GL}'}});"></script>
+
+        <title>
+    概要
+</title>
+
+            
+        <script>
+    // Rich note contents live outside paragraphs; the inline trigger stays in its sentence.
+    // Also called before KaTeX renders so formulas inside notes are included.
+    function initializeInlinePopovers() {
+        document.querySelectorAll('template[data-inline-popover]').forEach(function(template) {
+            document.body.appendChild(template.content);
+            template.remove();
+        });
+    }
+
+    function disclosureTrigger(id) {
+        return Array.from(document.querySelectorAll('button[aria-controls]')).find(function(btn) {
+            return btn.getAttribute('aria-controls') === id;
+        });
+    }
+
+    // Fit a floating note above or below its trigger, keeping both edges on screen.
+    function positionInlinePopover(content, btn) {
+        var rect = btn.getBoundingClientRect();
+        var margin = 16, gap = 6;
+        var viewportWidth = document.documentElement.clientWidth;
+        var viewportHeight = window.innerHeight;
+        if (rect.bottom < 0 || rect.top > viewportHeight) {
+            closeBox(content);
+            return;
+        }
+        content.style.maxHeight = Math.max(32, viewportHeight - 2 * margin) + 'px';
+        var below = Math.max(0, viewportHeight - rect.bottom - gap - margin);
+        var above = Math.max(0, rect.top - gap - margin);
+        var placeAbove = content.getBoundingClientRect().height > below && above > below;
+        content.style.maxHeight = Math.max(32, placeAbove ? above : below) + 'px';
+        var box = content.getBoundingClientRect();
+        var top = placeAbove ? rect.top - gap - box.height : rect.bottom + gap;
+        content.style.top = Math.max(margin, Math.min(top, viewportHeight - box.height - margin)) + 'px';
+        content.style.left = Math.max(margin, Math.min(rect.left, viewportWidth - box.width - margin)) + 'px';
+    }
+
+    function toggleDetails(btn) {
+        var content = document.getElementById(btn.getAttribute('aria-controls'));
+        if (!content) return;
+        if (content.style.display === "none") {
+            if (content.classList.contains('inline_expandable-content')) {
+                document.querySelectorAll('.inline_expandable-content').forEach(closeBox);
+            }
+            content.style.display = "block";
+            btn.classList.add("active");
+            btn.setAttribute("aria-expanded", "true");
+            if (content.classList.contains('inline_expandable-content')) {
+                positionInlinePopover(content, btn);
+                // Keyboard scrolling and the next Tab now reach the note's contents.
+                content.focus({ preventScroll: true });
+            }
+        } else {
+            closeBox(content);
+        }
+    }
+
+    function closeBox(box) {
+        var restoreFocus = box.contains(document.activeElement);
+        box.style.display = "none";
+        var btn = disclosureTrigger(box.id);
+        if (btn) {
+            btn.classList.remove("active");
+            btn.setAttribute("aria-expanded", "false");
+            if (restoreFocus) btn.focus({ preventScroll: true });
+        }
+    }
+
+    // Keep all inline triggers for the same content in sync for screen readers.
+    function updateToggleState(id, expanded) {
+        document.querySelectorAll('.inline-toggle[aria-controls]').forEach(function(btn) {
+            if (btn.getAttribute('aria-controls') === id) {
+                btn.setAttribute('aria-expanded', String(expanded));
+            }
+        });
+    }
+
+    function toggleBlock(id) {
+        var content = document.getElementById(id);
+        if (!content) return;
+        var expanded = window.getComputedStyle(content).display === 'none';
+        content.style.display = expanded ? 'block' : 'none';
+        updateToggleState(id, expanded);
+    }
+
+    // A toggle target may start visible or be hidden by CSS rather than inline styles.
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeInlinePopovers();
+        document.querySelectorAll('.inline-toggle[aria-controls]').forEach(function(btn) {
+            var content = document.getElementById(btn.getAttribute('aria-controls'));
+            if (content) {
+                btn.setAttribute('aria-expanded', String(window.getComputedStyle(content).display !== 'none'));
+            }
+        });
+    });
+
+    // Floating notes follow page scrolling and resizing; Escape returns to their trigger.
+    function repositionInlinePopovers() {
+        document.querySelectorAll('.inline_expandable-content').forEach(function(content) {
+            if (content.style.display !== 'none') {
+                var btn = disclosureTrigger(content.id);
+                if (btn) positionInlinePopover(content, btn);
+            }
+        });
+    }
+    window.addEventListener('resize', repositionInlinePopovers);
+    window.addEventListener('scroll', repositionInlinePopovers, { passive: true });
+    document.addEventListener('keydown', function(event) {
+        if (event.key !== 'Escape') return;
+        document.querySelectorAll('.inline_expandable-content').forEach(function(content) {
+            if (content.style.display !== 'none') {
+                closeBox(content);
+                var btn = disclosureTrigger(content.id);
+                if (btn) btn.focus();
+            }
+        });
+    });
+</script>
+
+        
+        <style>
+            :root, body { transition: background-color 0.3s ease, color 0.3s ease; }
+        </style>
+        
+        
+        
+        <script>
+            // Restore manual overrides only while the gesture is enabled.
+            // Otherwise a previous visit's light override could defeat always_dark.
+            (function() {
+                var saved = localStorage.getItem('color-scheme');
+                if (saved === 'light') document.documentElement.classList.add('light-mode');
+                if (saved === 'dark') document.documentElement.classList.add('dark-mode');
+            })();
+        </script>
+        
+        <script>
+            // Match the favicon to the site's effective appearance, including saved choices.
+            (function() {
+                var favicon = document.getElementById('site-favicon');
+                var systemLight = window.matchMedia('(prefers-color-scheme: light)');
+                function updateSiteFavicon() {
+                    var html = document.documentElement;
+                    var light = html.classList.contains('light-mode') ||
+                        (!html.classList.contains('dark-mode') &&
+                         !html.classList.contains('always-dark') && systemLight.matches);
+                    var href = light ? favicon.dataset.lightHref : favicon.dataset.darkHref;
+                    if (favicon.href !== href) favicon.href = href;
+                }
+                window.updateSiteFavicon = updateSiteFavicon;
+                updateSiteFavicon();
+                systemLight.addEventListener('change', updateSiteFavicon);
+            })();
+        </script>
+        
+    </head>
+    <body>
+        
+    <div class="wrap">
+        <div class="section" id="title">
+            
+    概要
+    
+    <div class="lang-links">
+        
+            
+                
+                <a href="https:&#x2F;&#x2F;shen-zhefeng.github.io&#x2F;cn&#x2F;about&#x2F;">中文</a><span class="lang-sep"> | </span>
+                
+            
+                
+                <a href="https:&#x2F;&#x2F;shen-zhefeng.github.io&#x2F;about&#x2F;">English</a><span class="lang-sep"> | </span>
+                
+            
+                
+            
+        
+    </div>
+    
+
+        </div>
+        <div class="section" id="sections">
+            
+        </div>
+        <div class="section" id="content">
+            
+    
+        
+        
+        
+        
+        
+        <hr/>
+    
+    <p>このサイトは、改変した <a rel="external" href="https://github.com/janbaudisch/zola-sam">zola-sam</a> テーマ（<a rel="external" href="https://github.com/victoriadrake/hugo-theme-sam">hugo-theme-sam</a> の Zola 移植版）を使用した個人ウェブサイトのテンプレートです。ソースコード：<a rel="external" href="https://github.com/shen-zhefeng/shen-zhefeng.github.io">GitHub</a>。</p>
+<p><a rel="external" href="https://opencode.ai/">OpenCode</a>（<a rel="external" href="https://www.deepseek.com/">DeepSeek</a> モデル）と <a rel="external" href="https://openai.com/codex/">Codex</a>（<a rel="external" href="https://chatgpt.com/">GPT</a> モデル）を使用して開発しました。</p>
+
+
+        </div>
+        
+    <div class="section bottom-menu">
+        <hr/>
+        <p>
+            
+                
+                    
+                    <a href="https:&#x2F;&#x2F;shen-zhefeng.github.io&#x2F;ja&#x2F;about&#x2F;">名前</a>
+                    &#183;
+                    
+                
+                    
+                    <a href="https:&#x2F;&#x2F;shen-zhefeng.github.io&#x2F;ja&#x2F;research&#x2F;">研究</a>
+                    &#183;
+                    
+                
+                    
+                    <a href="https:&#x2F;&#x2F;shen-zhefeng.github.io&#x2F;teaching&#x2F;">教育</a>
+                    &#183;
+                    
+                
+                    
+                    <a href="https://shen-zhefeng.github.io/sample.pdf">CV</a>
+                    &#183;
+                    
+                
+                    
+                    <a href="https:&#x2F;&#x2F;shen-zhefeng.github.io&#x2F;more&#x2F;">もっと</a>
+                    &#183;
+                    
+                
+            
+            <a href="https://shen-zhefeng.github.io/ja/">
+                ホーム
+            </a>
+        </p>
+    </div>
+
+        
+    
+        <div class="section footer">
+            
+            
+            
+                サイト準備中。
+            
+            
+            最終更新
+             2026年09月28日
+            
+        </div>
+    
+
+    </div>
+
+    </body>
+</html>
