@@ -1,0 +1,84 @@
+name: Validate and deploy
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+# Building and testing never need permission to change the GitHub repository.
+permissions:
+  contents: read
+
+# Cancel superseded runs to prevent overlapping deployments from the same branch.
+# PRs have separate refs, so reviewing a PR does not cancel a main deployment.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Build and test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      # Install on the runner so both the smoke script and Python suites can
+      # invoke the same Zola binary. Verify the release before extracting it.
+      - name: Install Zola 0.22.1
+        env:
+          ZOLA_VERSION: 0.22.1
+          ZOLA_SHA256: 0ca09aa40376aaa9ddfb512ff9ad963262ef95edb0d0f2d5ec6961b6f5cf22ef
+        run: |
+          archive="$RUNNER_TEMP/zola.tar.gz"
+          curl --fail --location --retry 3 \
+            "https://github.com/getzola/zola/releases/download/v${ZOLA_VERSION}/zola-v${ZOLA_VERSION}-x86_64-unknown-linux-gnu.tar.gz" \
+            --output "$archive"
+          printf '%s  %s\n' "$ZOLA_SHA256" "$archive" | sha256sum --check
+          mkdir -p "$RUNNER_TEMP/zola-bin"
+          tar -xzf "$archive" -C "$RUNNER_TEMP/zola-bin" zola
+          echo "$RUNNER_TEMP/zola-bin" >> "$GITHUB_PATH"
+
+      - name: Validate production, drafts, regressions, and links
+        run: ./test.sh
+
+      # Save only the tested production files. Draft fixtures never leave this job.
+      - name: Save production build
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: production-site
+          path: public/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 1
+
+  deploy:
+    name: Publish to GitHub Pages
+    needs: validate
+    # Manual runs on other branches and all PR runs stop after validation.
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      # Deploy the exact files that passed validation, without rebuilding.
+      - name: Download production build
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: production-site
+          path: public/
+
+      - name: Publish production build
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: public
+          # Match the existing deployment's single generated commit history.
+          force_orphan: true

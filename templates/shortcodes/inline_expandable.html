@@ -1,0 +1,12 @@
+<span class="inline_expandable-container">
+    {# Template content is inert: rich Markdown cannot close the surrounding paragraph.
+       Shared JS mounts the popover beside the page body before it can be opened. #}
+    <button type="button" class="expandable-trigger inline_expandable-trigger" aria-expanded="false" aria-controls="shortcode-inline-expandable-{{ nth }}" onclick="toggleDetails(this)">
+        {{ trigger }}
+    </button>
+    <template data-inline-popover>
+        <div id="shortcode-inline-expandable-{{ nth }}" class="inline_expandable-content" role="region" aria-label="{{ trigger }}" tabindex="-1" style="display: none;" onclick="closeBox(this)">
+            {{ body | markdown | safe }}
+        </div>
+    </template>
+</span>

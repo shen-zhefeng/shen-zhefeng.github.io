@@ -1,0 +1,118 @@
+<script>
+    // Rich note contents live outside paragraphs; the inline trigger stays in its sentence.
+    // Also called before KaTeX renders so formulas inside notes are included.
+    function initializeInlinePopovers() {
+        document.querySelectorAll('template[data-inline-popover]').forEach(function(template) {
+            document.body.appendChild(template.content);
+            template.remove();
+        });
+    }
+
+    function disclosureTrigger(id) {
+        return Array.from(document.querySelectorAll('button[aria-controls]')).find(function(btn) {
+            return btn.getAttribute('aria-controls') === id;
+        });
+    }
+
+    // Fit a floating note above or below its trigger, keeping both edges on screen.
+    function positionInlinePopover(content, btn) {
+        var rect = btn.getBoundingClientRect();
+        var margin = 16, gap = 6;
+        var viewportWidth = document.documentElement.clientWidth;
+        var viewportHeight = window.innerHeight;
+        if (rect.bottom < 0 || rect.top > viewportHeight) {
+            closeBox(content);
+            return;
+        }
+        content.style.maxHeight = Math.max(32, viewportHeight - 2 * margin) + 'px';
+        var below = Math.max(0, viewportHeight - rect.bottom - gap - margin);
+        var above = Math.max(0, rect.top - gap - margin);
+        var placeAbove = content.getBoundingClientRect().height > below && above > below;
+        content.style.maxHeight = Math.max(32, placeAbove ? above : below) + 'px';
+        var box = content.getBoundingClientRect();
+        var top = placeAbove ? rect.top - gap - box.height : rect.bottom + gap;
+        content.style.top = Math.max(margin, Math.min(top, viewportHeight - box.height - margin)) + 'px';
+        content.style.left = Math.max(margin, Math.min(rect.left, viewportWidth - box.width - margin)) + 'px';
+    }
+
+    function toggleDetails(btn) {
+        var content = document.getElementById(btn.getAttribute('aria-controls'));
+        if (!content) return;
+        if (content.style.display === "none") {
+            if (content.classList.contains('inline_expandable-content')) {
+                document.querySelectorAll('.inline_expandable-content').forEach(closeBox);
+            }
+            content.style.display = "block";
+            btn.classList.add("active");
+            btn.setAttribute("aria-expanded", "true");
+            if (content.classList.contains('inline_expandable-content')) {
+                positionInlinePopover(content, btn);
+                // Keyboard scrolling and the next Tab now reach the note's contents.
+                content.focus({ preventScroll: true });
+            }
+        } else {
+            closeBox(content);
+        }
+    }
+
+    function closeBox(box) {
+        var restoreFocus = box.contains(document.activeElement);
+        box.style.display = "none";
+        var btn = disclosureTrigger(box.id);
+        if (btn) {
+            btn.classList.remove("active");
+            btn.setAttribute("aria-expanded", "false");
+            if (restoreFocus) btn.focus({ preventScroll: true });
+        }
+    }
+
+    // Keep all inline triggers for the same content in sync for screen readers.
+    function updateToggleState(id, expanded) {
+        document.querySelectorAll('.inline-toggle[aria-controls]').forEach(function(btn) {
+            if (btn.getAttribute('aria-controls') === id) {
+                btn.setAttribute('aria-expanded', String(expanded));
+            }
+        });
+    }
+
+    function toggleBlock(id) {
+        var content = document.getElementById(id);
+        if (!content) return;
+        var expanded = window.getComputedStyle(content).display === 'none';
+        content.style.display = expanded ? 'block' : 'none';
+        updateToggleState(id, expanded);
+    }
+
+    // A toggle target may start visible or be hidden by CSS rather than inline styles.
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeInlinePopovers();
+        document.querySelectorAll('.inline-toggle[aria-controls]').forEach(function(btn) {
+            var content = document.getElementById(btn.getAttribute('aria-controls'));
+            if (content) {
+                btn.setAttribute('aria-expanded', String(window.getComputedStyle(content).display !== 'none'));
+            }
+        });
+    });
+
+    // Floating notes follow page scrolling and resizing; Escape returns to their trigger.
+    function repositionInlinePopovers() {
+        document.querySelectorAll('.inline_expandable-content').forEach(function(content) {
+            if (content.style.display !== 'none') {
+                var btn = disclosureTrigger(content.id);
+                if (btn) positionInlinePopover(content, btn);
+            }
+        });
+    }
+    window.addEventListener('resize', repositionInlinePopovers);
+    window.addEventListener('scroll', repositionInlinePopovers, { passive: true });
+    document.addEventListener('keydown', function(event) {
+        if (event.key !== 'Escape') return;
+        document.querySelectorAll('.inline_expandable-content').forEach(function(content) {
+            if (content.style.display !== 'none') {
+                closeBox(content);
+                var btn = disclosureTrigger(content.id);
+                if (btn) btn.focus();
+            }
+        });
+    });
+</script>

@@ -1,0 +1,25 @@
+// ═══ Mixins — reusable Sass patterns ═══
+
+// A thin, centered horizontal rule with no background color
+// Used for section dividers throughout the site
+=skinny-hr
+    margin: 1rem 0
+    background-color: transparent
+    width: 50%
+    border-style: solid
+    border-width: 1px
+
+// Smooth CSS transition for interactive elements
+// Used on links and expandable triggers
+// $time — duration of the transition (e.g., 0.5s)
+=ease($time)
+    transition: $time ease
+
+// Colors for the page and boxes that paint a normal light/dark theme background
+// Local surface colors let paragraph text stay muted while links remain opaque
+// Reset them on nested boxes so an enclosing inverted box cannot give them the wrong colors
+=normal-surface
+    color: var(--text)
+    --surface-text: var(--text-muted)
+    --surface-links: var(--links)
+    --surface-links-hover: var(--links-hover)

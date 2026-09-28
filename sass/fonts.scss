@@ -1,0 +1,15 @@
+// Load the site's main text font from the visitor's device or the bundled file.
+@font-face {
+    font-family: 'Didact Gothic';
+    font-style: normal;
+    font-weight: 400;
+    // Show readable fallback text while the font loads, then switch to Didact Gothic.
+    font-display: swap;
+    src: local('Didact Gothic Regular'), local('DidactGothic-Regular'), url(fonts/DidactGothic-Regular.otf) format('opentype');
+}
+// @font-face {
+//     font-family: 'FOT-MatissePro-EB';
+//     font-style: normal;
+//     font-weight: 400;
+//     src: url(fonts/FOT-MatissePro-EB.otf) format('opentype');
+// }

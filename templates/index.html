@@ -1,0 +1,150 @@
+{% import "macros.html" as macros %}
+
+<!DOCTYPE html>
+{# The Chinese URL code is cn; assistive technology needs the language tag zh-CN. #}
+<html lang="{% if lang == 'cn' %}zh-CN{% else %}{{ lang }}{% endif %}"{% if config.extra.always_dark | default(value=false) %} class="always-dark"{% endif %}>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="referrer" content="no-referrer">
+        <link id="site-favicon" rel="icon" type="image/x-icon"
+            href="{{ get_url(path='faviconblack.ico') }}"
+            data-dark-href="{{ get_url(path='faviconblack.ico') }}"
+            data-light-href="{{ get_url(path='faviconwhite.ico') }}">
+        <link rel="stylesheet" href="{{ get_url(path='fonts.css') }}">
+        <link rel="stylesheet" href="{{ get_url(path='style.css') }}">
+        <link rel="stylesheet" href="{{ get_url(path='katex/katex.min.css') }}">
+        <script defer src="{{ get_url(path='js/table-scroll.js') }}"></script>
+        <script defer src="{{ get_url(path='katex/katex.min.js') }}"></script>
+        <script defer src="{{ get_url(path='katex/contrib/auto-render.min.js') }}"
+            onload="initializeInlinePopovers();renderMathInElement(document.body,{delimiters:[
+              {left:'$$',right:'$$',display:true},
+              {left:'$',right:'$',display:false}
+            ],macros:{'\\GL':'\\operatorname{GL}'}});"></script>
+
+        <title>{% block htmltitle %}{{ config.title }}{% endblock htmltitle %}</title>
+
+            {% if config.generate_rss %}
+            <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ get_url(path='rss.xml') }}">
+        {% endif %}
+        {% include "shortcodes/_toggle_details.js.html" %}
+        {% if config.extra.light_mode_transition %}
+        <style>
+            :root, body { transition: background-color 0.3s ease, color 0.3s ease; }
+        </style>
+        {% endif %}
+        {% if config.extra.light_mode_style == "blue" %}
+        <style>
+            /* Automatic light links respect both system-following and manual settings. */
+            @media (prefers-color-scheme: light) {
+                :root:not(.dark-mode):not(.always-dark) { --links: #16537E; }
+            }
+            /* A manual light selection uses the configured blue link color. */
+            html.light-mode { --links: #16537E; }
+        </style>
+        {% endif %}
+        {% if config.extra.triple_click | default(value=true) %}
+        <script>
+            // Restore manual overrides only while the gesture is enabled.
+            // Otherwise a previous visit's light override could defeat always_dark.
+            (function() {
+                var saved = localStorage.getItem('color-scheme');
+                if (saved === 'light') document.documentElement.classList.add('light-mode');
+                if (saved === 'dark') document.documentElement.classList.add('dark-mode');
+            })();
+        </script>
+        {% endif %}
+        <script>
+            // Match the favicon to the site's effective appearance, including saved choices.
+            (function() {
+                var favicon = document.getElementById('site-favicon');
+                var systemLight = window.matchMedia('(prefers-color-scheme: light)');
+                function updateSiteFavicon() {
+                    var html = document.documentElement;
+                    var light = html.classList.contains('light-mode') ||
+                        (!html.classList.contains('dark-mode') &&
+                         !html.classList.contains('always-dark') && systemLight.matches);
+                    var href = light ? favicon.dataset.lightHref : favicon.dataset.darkHref;
+                    if (favicon.href !== href) favicon.href = href;
+                }
+                window.updateSiteFavicon = updateSiteFavicon;
+                updateSiteFavicon();
+                systemLight.addEventListener('change', updateSiteFavicon);
+            })();
+        </script>
+        {% if config.extra.google_analytics %}
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ config.extra.google_analytics }}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '{{ config.extra.google_analytics }}');
+        </script>
+        {% endif %}
+    </head>
+    <body>
+        {% block body %}
+            <div class="section" id="splash">
+                {% if config.extra.sam_menu %}
+                    {% for link in config.extra.sam_menu %}
+                        {% if config.extra.hide_teaching and (link.translation_key == "menu_teaching" or link.text == "Teaching") %}
+                            {# skip #}
+                        {% else %}
+                        <div class="big-link">
+                            <a href="{{ macros::menu_url(link=link) }}">
+                                {{ macros::menu_label(link=link) }}
+                            </a>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    {% for current in section.subsections %}
+                        {% set current = get_section(path=current) %}
+                        <div class="big-link">
+                            <a href="{{ current.permalink }}">
+                                {{ macros::title_or_last(component=current) }}
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            {% if config.extra.triple_click | default(value=true) %}
+            <script>
+                // 3-click easter egg — toggle light/dark mode (splash page only)
+                (function() {
+                    var clicks = 0, timer = null;
+                    document.addEventListener('click', function(e) {
+                        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' ||
+                            e.target.tagName === 'SUMMARY' || e.target.tagName === 'INPUT') return;
+                        clicks++;
+                        clearTimeout(timer);
+                        if (clicks >= 3) {
+                            // Clear text selected by the browser during the triple-click gesture.
+                            var selection = window.getSelection();
+                            if (selection) selection.removeAllRanges();
+                            var html = document.documentElement;
+                            if (html.classList.contains('light-mode')) {
+                                html.classList.remove('light-mode');
+                                html.classList.add('dark-mode');
+                                localStorage.setItem('color-scheme', 'dark');
+                            } else if (html.classList.contains('dark-mode')) {
+                                html.classList.remove('dark-mode');
+                                localStorage.removeItem('color-scheme');
+                            } else {
+                                html.classList.add('light-mode');
+                                localStorage.setItem('color-scheme', 'light');
+                            }
+                            window.updateSiteFavicon();
+                            clicks = 0;
+                        }
+                        timer = setTimeout(function() { clicks = 0; }, 1500);
+                    });
+                })();
+            </script>
+            {% endif %}
+        {% endblock body %}
+    </body>
+</html>

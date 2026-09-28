@@ -1,0 +1,14 @@
+<div class="expandable-container">
+{{header| default(value="")| markdown | safe}}
+{% set underline_class = "" %}
+{% if underline is defined and not underline %}
+    {% set underline_class = " no-underline" %}
+{% endif %}
+{# nth counts this shortcode's uses on the page, giving each content box its own ID. #}
+<button type="button" class="expandable-trigger{{underline_class}}" aria-expanded="false" aria-controls="shortcode-expandable-{{ nth }}" onclick="toggleDetails(this)">
+    {{ trigger }}
+</button>
+<div id="shortcode-expandable-{{ nth }}" class="expandable-content" style="display: none;" onclick="closeBox(this)">
+    {{ body | markdown | safe }}
+</div>
+</div>

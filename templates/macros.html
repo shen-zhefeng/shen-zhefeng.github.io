@@ -1,0 +1,119 @@
+{% macro title_or_last(component, offset=2) %}
+    {% set length = component.components | length %}
+    {% set name = component.components | last %}
+    {{ component.title | default(value=name) }}
+{% endmacro title_or_last %}
+
+{% macro format_date(date) %}
+    {% set date_format = config.extra.date_format | default(value="%a %b %e, %Y") %}
+    {{ date | date(format=date_format) }}
+{% endmacro format_date %}
+
+{% macro section_menu(path) %}
+    <p>
+        {% set index = get_section(path=path) %}
+        {% for current in index.subsections %}
+            {% set current = get_section(path=current) %}
+            <a href="{{ current.permalink }}">{{ macros::title_or_last(component=current) }}</a>
+        {% if loop.last == false %} &#183; {% endif %}
+        {% endfor %}
+    </p>
+{% endmacro section_menu %}
+
+{# Zola 0.22 does not expose the active language's translation map in config.
+   Read the existing TOML tables (load_data caches the file), and only call trans
+   after checking the key. Editable labels therefore work without translations. #}
+{% macro translated_label(key, fallback) -%}
+    {%- set source_config = load_data(path="config.toml", format="toml") -%}
+    {%- if lang == config.default_language -%}
+        {%- set translations = source_config.translations | default(value="") -%}
+    {%- else -%}
+        {%- set language_config = source_config.languages | get(key=lang) -%}
+        {%- set translations = language_config.translations | default(value="") -%}
+    {%- endif -%}
+    {%- if translations and key in translations -%}
+        {{- trans(key=key, lang=lang) -}}
+    {%- else -%}
+        {{- fallback -}}
+    {%- endif -%}
+{%- endmacro translated_label %}
+
+{% macro menu_label(link) -%}
+    {%- if link.translation_key -%}
+        {{- macros::translated_label(key=link.translation_key, fallback=link.text) -}}
+    {%- else -%}
+        {{- link.text -}}
+    {%- endif -%}
+{%- endmacro menu_label %}
+
+{# Optional page names a real default-language content file. Its translations
+   supply correct URLs even for nested pages and custom slugs. Missing language
+   versions fall back to that source page; ordinary URLs need no content lookup. #}
+{% macro menu_url(link) -%}
+    {%- if link.page -%}
+        {%- if link.page is ending_with("_index.md") -%}
+            {%- set destination = get_section(path=link.page) -%}
+        {%- else -%}
+            {%- set destination = get_page(path=link.page) -%}
+        {%- endif -%}
+        {%- set translated = destination.translations | filter(attribute="lang", value=lang) | first -%}
+        {%- if translated -%}
+            {{- translated.permalink -}}
+        {%- else -%}
+            {{- destination.permalink -}}
+        {%- endif -%}
+    {%- elif link.link is starting_with("/") and not link.link is starting_with("//") -%}
+        {{- get_url(path=link.link) -}}
+    {%- else -%}
+        {{- link.link -}}
+    {%- endif -%}
+{%- endmacro menu_url %}
+
+{# get_url includes a deployment subdirectory as well as the selected language. #}
+{% macro home_url() -%}
+    {%- if lang == config.default_language -%}
+        {{- get_url(path="/", trailing_slash=true) -}}
+    {%- else -%}
+        {{- get_url(path=lang ~ "/", trailing_slash=true) -}}
+    {%- endif -%}
+{%- endmacro home_url %}
+
+{% macro bottom_menu() %}
+    <div class="section bottom-menu">
+        <hr/>
+        <p>
+            {% if config.extra.sam_menu and config.extra.sam_bottom_menu %}
+                {% for link in config.extra.sam_menu %}
+                    {% if config.extra.hide_teaching and (link.translation_key == "menu_teaching" or link.text == "Teaching") %}
+                        {# skip #}
+                    {% else %}
+                    <a href="{{ macros::menu_url(link=link) }}">{{ macros::menu_label(link=link) }}</a>
+                    &#183;
+                    {% endif %}
+                {% endfor %}
+            {% elif config.extra.sam_bottom_menu %}
+                {% set index = get_section(path="_index.md", lang=lang) %}
+                {% for current in index.subsections %}
+                    {% set current = get_section(path=current) %}
+                    <a href="{{ current.permalink }}">{{ macros::title_or_last(component=current) }}</a>
+                    &#183;
+                {% endfor %}
+            {% endif %}
+            <a href="{{ macros::home_url() }}">
+                {{ trans(key="home", lang=lang) }}
+            </a>
+        </p>
+    </div>
+{% endmacro bottom_menu %}
+
+{% macro footer() %}
+    {% if config.extra.sam_footer %}
+        <div class="section footer">
+            {{ config.extra.sam_footer.text | safe }}
+            {% if config.extra.sam_footer.update_time %}
+            {{ trans(key="last_updated", lang=lang) }}
+             {{ now() | date(format=trans(key="date_format", lang=lang)) }}
+            {% endif %}
+        </div>
+    {% endif %}
+{% endmacro footer %}

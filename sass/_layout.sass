@@ -1,0 +1,120 @@
+// ═══ Page layout — the content wrapper for all non-splash pages ═══
+
+// Centers content horizontally with auto margins
+// Keep at least 1rem (16px) of space on each side of narrow screens
+// Grow to a 36rem (576px) tablet column, then use 45% from 1280px upward
+// The 800px maximum limits long lines; width changes continuously without animation
+.wrap
+    margin: 0 auto
+    margin-top: 6rem
+    max-width: 800px
+    width: min(calc(100% - 2rem), max(45%, 36rem))
+    // Preserve the existing top/bottom padding on small screens; width supplies side space
+    @media screen and (max-width: 736px)
+        padding: 1rem 0
+
+// ═══ Section — generic container for page sections (title, content, menu, footer) ═══
+
+// Stacked vertically (flex-direction: column), left-aligned
+.section
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: flex-start
+
+// ═══ Splash page (homepage) — full-screen centered menu ═══
+
+// Fills at least the viewport and grows when the menu needs more room
+// 45% width on desktop, 90% on mobile
+// Vertical padding keeps the first and last links reachable on short screens
+#splash
+    margin: auto 0
+    min-height: 100vh
+    padding: 2rem 0
+    max-width: 800px
+    width: 45%
+    @media screen and (max-width: 736px)
+        width: 90%
+
+// Big link items on the splash page (e.g., "Name", "Research", "Teaching")
+// Large font (3rem), lightweight, generous spacing between items
+.big-link
+    font-family: $font
+    font-size: 3rem
+    font-weight: 300
+    margin-bottom: 2rem
+    line-height: 1.5em
+    // Equal space above and below the complete menu
+    &:last-child
+        margin-bottom: 0
+
+// ═══ Page title — the heading at the top of content pages ═══
+
+// Larger font (2rem), spaced from the top
+#title
+    margin-top: 3rem
+    font-family: $font
+    font-size: 2rem
+    line-height: 3rem
+
+// ═══ Bottom menu — navigation bar at the bottom of content pages ═══
+
+// Centered, with generous padding above and below
+// Shows the same links as the splash page in a compact horizontal row
+.bottom-menu
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    padding-top: 3rem
+    padding-bottom: 3rem
+    text-align: center
+
+// ═══ Footer — the very bottom of every content page ═══
+
+// Centered text, with "Last updated" date if enabled
+// Subtle styling — small, muted text while links remain fully opaque
+.footer
+    width: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    text-align: center
+    background-color: transparent
+    position: relative
+    bottom: 0
+    padding: 0rem 1rem 3rem 1rem
+    font-family: $font
+    font-size: 1rem
+    line-height: 1em
+    color: var(--text-muted)
+    a
+        border-bottom: none
+        display: contents
+
+// ═══ Language navigation — language-switching links below page title ═══
+
+// Small language links keep the theme's full-contrast link colors
+// Only appears on pages with multilingual = true in frontmatter
+.lang-links
+    font-size: 0.9rem
+    margin-bottom: 1.5rem
+    a
+        border-bottom: none
+    // Hide the last separator (|) to avoid trailing pipe
+    .lang-sep:last-of-type
+        display: none
+
+// ═══ Utility layout helpers ═══
+
+.go-left
+    justify-content: flex-start
+    align-items: flex-start
+
+.go-right
+    justify-content: flex-end
+    align-items: flex-end
+
+.go-center
+    justify-content: center
+    align-items: center

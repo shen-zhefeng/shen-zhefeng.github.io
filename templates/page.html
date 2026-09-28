@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% import "macros.html" as macros %}
+
+{% block htmltitle %}
+    {{ page.title }}
+{% endblock htmltitle %}
+
+{% block title %}
+    {{ page.title }}
+    {% if page.extra.lang_links or page.extra.multilingual %}
+    <div class="lang-links">
+        {% if page.extra.lang_links %}
+            {% for link in page.extra.lang_links %}
+                {% set translation = page.translations | filter(attribute="lang", value=link.code) | first %}
+                {# Explicit paths allow custom destinations. Otherwise only link
+                   to a real translation, using its full permalink. #}
+                {% if link.path or translation %}
+                    {% if link.path %}
+                        {% set link_path = link.path %}
+                    {% else %}
+                        {% set link_path = translation.permalink %}
+                    {% endif %}
+                    <a href="{{ link_path }}">{% if link.text %}{{ link.text }}{% else %}{{ macros::translated_label(key="lang_" ~ link.code, fallback=link.code) }}{% endif %}</a><span class="lang-sep"> | </span>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            {% for translation in page.translations | sort(attribute="lang") %}
+                {% if translation.lang != lang %}
+                <a href="{{ translation.permalink }}">{{ macros::translated_label(key="lang_" ~ translation.lang, fallback=translation.lang) }}</a><span class="lang-sep"> | </span>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+    {% endif %}
+{% endblock title %}
+
+{% block content %}
+    {% if not page.extra.no_header %}
+        {% if page.date %}
+            {{ macros::format_date(date=page.date) }}
+        {% endif %}
+        {% if config.extra.show_word_count and not page.extra.hide_word_count %}
+            {% if page.date %}
+                &#183; {{ page.word_count }} words
+            {% else %}
+                {{ page.word_count }} words
+            {% endif %}
+        {% endif %}
+        {% if config.extra.show_reading_time and not page.extra.hide_reading_time %}
+            {% set previous = config.extra.show_word_count and not page.extra.hide_word_count %}
+            {% if previous or page.date %}
+                &#183; {{ page.reading_time }} min
+            {% else %}
+                {{ page.reading_time }} min
+            {% endif %}
+        {% endif %}
+        {% if page.taxonomies.tags %}
+            <div class="tag-container">
+                Tags :&nbsp;
+                {% for tag in page.taxonomies.tags %}
+                    <span class="tag">
+                        <a href="{{ get_taxonomy_url(kind='tags', name=tag) }}">
+                            {{ tag }}
+                        </a>
+                    </span>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if page.taxonomies.authors %}
+            <div class="tag-container">
+                Authors :&nbsp;
+                {% for author in page.taxonomies.authors %}
+                    <span class="tag">
+                        <a href="{{ get_taxonomy_url(kind='authors', name=author) }}">
+                            {{ author }}
+                        </a>
+                    </span>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <hr/>
+    {% endif %}
+    {{ page.content | safe }}
+{% endblock content %}

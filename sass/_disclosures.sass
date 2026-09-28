@@ -1,0 +1,169 @@
+// All show/hide controls: custom blocks, floating notes, toggles, and native details.
+
+// ═══ Expandable block (click to show/hide content) ═══
+
+.expandable-container
+  display: block
+  margin-bottom: 4px
+
+// The clickable trigger line (solid underline by default)
+.expandable-trigger
+  background: none
+  border: none
+  border-bottom: 2px solid var(--surface-links)
+  border-radius: 0
+  color: var(--surface-links)
+  cursor: pointer
+  padding: 0
+  font-size: inherit
+  font-family: inherit
+  +ease(0.5s)
+
+  // Hover state — brightens the trigger text
+  &:hover
+    color: var(--surface-links-hover)
+
+  // Trigger without underline decoration
+  &.no-underline
+    border-bottom: none
+
+    &:hover
+      color: var(--surface-links-hover)
+
+  // Styling when the content box is open (bold trigger)
+  &.active
+    font-weight: bold
+    color: var(--surface-links)
+
+// The expandable content box (hidden by default, shown on click)
+.expandable-content
+  // A nested disclosure paints its own normal-theme background and foreground
+  +normal-surface
+  margin-top: 10px
+  padding: 5px 10px 10px 10px
+  border-left: 3px solid var(--expand-border)
+  background-color: var(--expand-bg)
+  cursor: pointer // Shows hand icon so user knows to click to close
+  transition: background-color 1s ease
+
+  // Darken hover feedback — signals the box is clickable to close
+  &:hover
+    background-color: var(--expand-hover)
+
+// ═══ Inline expandable (floating popover inside text) ═══
+
+.inline_expandable-container
+  display: inline
+
+// The floating note is mounted outside paragraphs and positioned by shared JS
+// Its width fits a phone; long notes scroll within the available viewport height
+.inline_expandable-content
+  // Mounted notes use the normal theme even when their trigger is inside an inverted box
+  +normal-surface
+  position: fixed
+  z-index: 100
+  width: min(400px, calc(100vw - 2rem))
+  overflow-y: auto
+  overflow-wrap: anywhere
+  padding: 10px
+  line-height: 1.8
+  background-color: var(--expand-bg)
+  border: 1px solid var(--expand-border)
+  border-radius: 0
+  cursor: pointer
+  transition: background-color 0.2s ease
+
+  &:hover
+    background-color: var(--expand-hover)
+
+  // Rich Markdown keeps normal paragraph and list spacing inside the note
+  p
+    display: block
+    margin-bottom: 0.75em
+  ul, ol
+    padding-left: 1.5em
+    margin-bottom: 0.75em
+  ul
+    list-style: disc
+  > :last-child
+    margin-bottom: 0
+
+  // Wide formulas, code samples, and images stay within the floating note
+  pre, .katex-display
+    overflow-x: auto
+  img
+    max-width: 100%
+
+// ═══ Toggle (inline clickable text) ═══
+
+.inline-toggle
+    color: var(--surface-links)
+    cursor: pointer
+    text-decoration: underline
+    display: inline-block
+
+// vertical-align: top fixes alignment when expandable blocks are inside list items
+li .expandable-container
+    margin-bottom: 0
+    vertical-align: top
+
+// Fixes paragraph spacing inside list items that contain expandable blocks
+// Prevents extra gaps between the trigger line and the content box
+li p:has(.expandable-container)
+  margin-bottom: 0
+  margin-top: 0
+
+// ═══ Native HTML details/summary — built-in expandable (no JavaScript) ═══
+
+// Styled as a bordered box with +/- toggle icon
+// Uses CSS custom properties so it adapts to light/dark mode
+details.expand-box
+  +normal-surface
+  background: var(--expand-bg)
+  border: 1px solid var(--expand-border)
+  border-radius: 5px
+  margin-bottom: 1rem
+  overflow: hidden
+  // Allow wide tables to shrink into their own scroll area inside the box
+  max-width: 100%
+  min-width: 0
+
+  // The clickable summary bar — acts as the trigger
+  summary
+    padding: 10px 15px
+    font-weight: bold
+    cursor: pointer
+    background-color: var(--expand-hover)
+    list-style: none
+    transition: background 0.2s
+    display: block
+
+    // Plus icon (right side of summary bar) when collapsed
+    &::after
+      content: '+'
+      float: right
+      font-weight: bold
+
+    // Hover and keyboard focus use a matched foreground/background in either theme
+    &:hover, &:focus-visible
+      background-color: var(--details-content-bg)
+      color: var(--details-content-text)
+
+    // Remove default triangle marker for WebKit browsers (Chrome, Safari)
+    &::-webkit-details-marker
+      display: none
+
+  // Minus icon when the box is expanded (open state)
+  &[open] summary::after
+    content: '-'
+
+  // The content area inside the expanded box
+  .expand-content
+    // Text, links, and their underlines use the foreground matched to this inverted box
+    --surface-text: var(--details-content-text)
+    --surface-links: var(--details-content-text)
+    --surface-links-hover: var(--details-content-text)
+    color: var(--details-content-text)
+    padding: 15px
+    border-top: 1px solid var(--expand-border)
+    background: var(--details-content-bg)

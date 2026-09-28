@@ -1,0 +1,83 @@
+// ═══ Sass variables (non-color, used for typography and spacing) ═══
+// Use a system sans-serif font when Didact Gothic is unavailable or still loading
+$font: 'Didact Gothic', sans-serif
+$body-size: 16px
+
+// ═══ CSS custom properties (colors — supports dark/light mode) ═══
+
+/* Dark theme (default) */
+:root
+    --white: #fff
+    --black: #111
+    --dark-grey: #39424E
+    --dark-blue: #16537E
+    // page background
+    --bg: #111
+    // body text
+    --text: #fff
+    // Muted paragraph/list text stays opaque, so nested links keep full contrast
+    --text-muted: #cfcfcf
+    // link color
+    --links: #999
+    // link hover
+    --links-hover: #fff
+    // code block background
+    --code-block: #000004
+    // expandable box background
+    --expand-bg: #111
+    // expandable box border
+    --expand-border: #fff
+    // expandable box hover
+    --expand-hover: #000
+    --details-content-bg: #fff
+    --details-content-text: #111
+    --blockquote-text: #111
+
+/* Automatic light appearance yields to the site setting and a manual dark choice. */
+@media (prefers-color-scheme: light)
+    :root:not(.always-dark):not(.dark-mode)
+        --bg: #fafafa
+        --text: #222
+        // Muted paragraph/list text without fading links or nested list items
+        --text-muted: #4d4d4d
+        --links: #555
+        --links-hover: #000
+        --code-block: #f0f0f0
+        --expand-bg: #f0f0f0
+        --expand-border: #ccc
+        --expand-hover: #ddd
+        --details-content-bg: #222
+        --details-content-text: #fff
+        --blockquote-text: #fff
+
+/* Light theme (manual 3-click easter egg override) */
+html.light-mode
+    --bg: #fafafa
+    --text: #222
+    // Muted paragraph/list text without fading links or nested list items
+    --text-muted: #4d4d4d
+    --links: #555
+    --links-hover: #000
+    --code-block: #f0f0f0
+    --expand-bg: #f0f0f0
+    --expand-border: #ccc
+    --expand-hover: #ddd
+    --details-content-bg: #222
+    --details-content-text: #fff
+    --blockquote-text: #fff
+
+/* Dark theme (manual 3-click easter egg override) */
+html.dark-mode
+    --bg: #111
+    --text: #fff
+    // Muted paragraph/list text without fading links or nested list items
+    --text-muted: #cfcfcf
+    --links: #999
+    --links-hover: #fff
+    --code-block: #000004
+    --expand-bg: #111
+    --expand-border: #fff
+    --expand-hover: #000
+    --details-content-bg: #fff
+    --details-content-text: #111
+    --blockquote-text: #111

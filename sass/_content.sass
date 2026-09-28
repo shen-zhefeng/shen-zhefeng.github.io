@@ -1,0 +1,187 @@
+// ═══ Content area — the main body of every content page ═══
+
+// Controls: spacing, line height, letter spacing
+// Contains styles for headings, paragraphs, code blocks,
+// blockquotes, tables, images, and lists within the content area
+#content
+    margin: 2rem 0
+    line-height: 2em
+    letter-spacing: 2px
+    // Only top-level content boxes fill the column; nested boxes size themselves
+    > div
+        width: 100%
+        margin-bottom: 1em
+    // Content headings — left-aligned (different from body headings which are centered)
+    & h1,h2,h3
+        margin: 1em 0em
+        text-align: left
+    // Content paragraphs — separate blocks with spacing; muted text never fades child links
+    & p
+        margin-bottom: 1em
+        line-height: 1.8
+        letter-spacing: 1.5px
+    // Syntax-highlighted code blocks
+    & .highlight
+        width: 100%
+    // Preformatted code blocks — dark background, rounded corners, scrollable
+    & pre
+        // Code blocks paint their own normal-theme surface, including inside inverted boxes
+        +normal-surface
+        line-height: 2rem
+        border-radius: 3px
+        padding: 1rem
+        overflow-x: auto
+        background-color: var(--code-block)
+        width: 100%
+        margin-bottom: 1em
+    // Code inside pre blocks — no border (the pre itself has the background)
+    & pre > code
+        border: none
+    // Inline code — monospace font, slightly smaller, with a subtle border
+    & code
+        font-size: 0.9rem
+        font-family: 'Source Code Pro', monospace
+        padding: 0.1rem
+        border-radius: 3px
+        border: 1px solid var(--surface-links)
+    // Images — full width, centered, with generous margin
+    & img
+        width: 100%
+        max-width: 100%
+        display: block
+        margin: 2rem auto
+        opacity: 1
+    // Blockquotes — a colored box with padding, used for quotes and callouts
+    // Background and text colors are inverted (dark text on colored bg)
+    & blockquote
+        // Keep the background tied to the page palette and match all contained links to its text
+        --surface-text: var(--blockquote-text)
+        --surface-links: var(--blockquote-text)
+        --surface-links-hover: var(--blockquote-text)
+        background-color: var(--links)
+        color: var(--blockquote-text)
+        padding: 2rem
+        margin: 2rem 1rem 2rem 1rem
+        border-radius: 3px
+        // Side margins stay inside the column even when the quote contains a wide table
+        max-width: calc(100% - 2rem)
+        min-width: 0
+        & ul
+            margin-top: 1rem
+        & li
+            list-style: disc
+    // List items in content — adequate spacing, slight indentation
+    & li
+        line-height: 2
+        padding-left: 0.4rem
+        &:last-child
+            margin-bottom: 1rem
+    // Unordered lists in content — disc markers, indented
+    & ul
+        list-style: disc outside
+        padding-left: 2rem
+    // Ordered lists in content — numbered, indented
+    & ol
+        list-style: decimal outside
+        padding-left: 2rem
+    // GitHub Gist embeds — full width, transparent background, bordered cells
+    & .gist
+        width: 100%
+        td, th
+            text-align: left
+            border: 0
+        & .gist-meta
+            background-color: transparent
+            color: var(--text)
+            & a
+                color: var(--text)
+
+// Tables keep native table layout in pages and in notes mounted outside the page content
+#content table, .inline_expandable-content table
+    width: 100%
+    border-collapse: collapse
+    margin: 0
+    // Compact headings and centered cells retain the existing table appearance
+    th
+        font-size: 0.9rem
+    td, th
+        padding: 2px 5px
+        text-align: center
+        border: 1px solid var(--surface-links)
+
+// The automatic wrapper contains wide tables without making the whole page scroll sideways
+.table-scroll
+    width: 100%
+    max-width: 100%
+    min-width: 0
+    overflow-x: auto
+    margin: 1rem 0
+    // Overflowing wrappers receive keyboard focus; inset outlines stay visible inside details
+    &:focus-visible
+        outline: 2px solid var(--surface-links)
+        outline-offset: -2px
+
+// ═══ Giallo syntax highlighting — code block line numbers (Zola 0.22+) ═══
+
+// Wraps each highlighted line in code blocks
+.giallo-l
+    display: inline-block
+    min-height: 1lh
+    width: 100%
+
+// Line number column — non-selectable, slightly transparent, right-aligned
+.giallo-ln
+    display: inline-block
+    user-select: none
+    margin-right: 0.4em
+    padding: 0.4em
+    min-width: 3ch
+    text-align: right
+    opacity: 0.8
+
+// Tag badges container — horizontal row of tag labels
+.tag-container
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: center
+
+// Individual tag badge — transparent background, positioned normally
+.tag
+    background-color: transparent
+    position: relative
+    bottom: 0
+    // Tag badges — small, muted text without fading their links
+    padding: 0.25em 0em
+    margin-right: 0.5em
+    color: var(--surface-text)
+
+// ═══ Grid layout — for image galleries ═══
+
+// Responsive grid: items are at least 400px wide, auto-fill rows
+// On mobile (≤736px), items take full width
+.grid
+    display: grid
+    grid-gap: 20px
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr))
+    grid-auto-rows: 400px
+    @media screen and (max-width: 736px)
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr))
+
+// Grid items — transparent background, hidden overflow
+.grid > div
+    background-color: transparent
+    overflow: hidden
+
+// Images inside grid items — cover the cell, maintain aspect ratio
+.grid > div > img
+    height: 100%
+    width: 100%
+    object-fit: cover
+    opacity: 1
+
+.grid > div > a > img
+    height: 100%
+    width: 100%
+    object-fit: cover
+    opacity: 1

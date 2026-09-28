@@ -1,0 +1,84 @@
+// ═══ Base styles — controls the overall look of every page ═══
+
+// Resets default browser margins and padding for all elements
+// Ensures consistent spacing across all browsers
+*
+    margin: 0
+    padding: 0
+    -webkit-box-sizing: border-box
+    box-sizing: border-box
+
+// The entire page background color
+// Default: dark (#111), changes to off-white (#fafafa) in light mode
+html
+    background-color: var(--bg)
+    font-family: $font
+    font-size: 16px
+
+// Body text — the main content container
+// Controls: text color, font size, line height, letter spacing
+// flex + column + align-items: center — horizontally centers all content
+body
+    +normal-surface
+    font-size: $body-size
+    font-family: $font
+    line-height: 2rem
+    letter-spacing: 1.5px
+    text-shadow: none
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+    opacity: 1
+
+// All headings (h1, h2, h3) — centered by default
+// opacity 0.6 makes them slightly transparent (subtle, not harsh)
+h1,h2,h3
+    margin-bottom: 0.5em
+    text-align: center
+    font-family: 'Didact Gothic', sans-serif
+    opacity: 0.6
+
+// List items — muted text without fading links or compounding in nested lists
+li
+    color: var(--surface-text)
+
+// Removes bullet points from unordered lists at the top level
+// Content-level lists (inside #content) have bullets restyled separately
+ul
+    list-style-type: none
+
+// Paragraphs stack normally, including inside quotes and expandable content
+// Navigation links still flow inline within their single menu paragraph
+p
+    display: block
+    color: var(--surface-text)
+
+// ═══ Links — the main interactive element on every page ═══
+
+// All links have an underline (border-bottom) that matches the text color
+// On hover, the link brightens to the hover color
+// transition creates a smooth 0.5s color change animation
+a
+    color: var(--surface-links)
+    text-decoration: none
+    border-bottom: 2px solid var(--surface-links)
+    +ease(0.5s)
+    &:hover, &:focus-visible
+        color: var(--surface-links-hover)
+    &:active
+        color: var(--surface-links)
+
+// Buttons — rounded controls with a theme-aware background and no shadow effects
+// Currently used sparsely, but styled for any <button> element
+button
+    padding: 20px
+    border: 0px
+    border-radius: 5px
+    background: var(--details-content-bg)
+
+// Horizontal rule — thin, centered, slightly transparent
+// Separates sections (e.g., below page title, before bottom menu)
+hr
+    +skinny-hr
+    opacity: 0.3

@@ -1,0 +1,16 @@
+// Main stylesheet — start here to find the styles for a visual feature.
+// Zola combines these partials into style.css; fonts.scss separately creates fonts.css.
+// Order matters: settings and helpers first, general styles before specific controls.
+
+// Font choices and the automatic/manual light and dark color palettes
+@import "theme"
+// Shared Sass patterns used by the partials below
+@import "mixins"
+// Browser reset and the default appearance of text, links, and buttons
+@import "base"
+// Markdown content, code, tables, images, galleries, and tags
+@import "content"
+// Page layout follows content so alignment helpers can still override tag-row alignment
+@import "layout"
+// Expandable blocks, floating notes, inline toggles, and native details
+@import "disclosures"

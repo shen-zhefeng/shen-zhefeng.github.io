@@ -1,0 +1,116 @@
+# The URL the site will be built for
+base_url = "https://shen-zhefeng.github.io/"
+title = "Prototype Sam"
+taxonomies = [
+    { name = "tags", rss = true },
+    { name = "authors", rss = true }
+]
+hard_link_static = true
+default_language = "en"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = false
+generate_sitemap = true
+generate_robots_txt = true
+
+# OpenAI's Codex page is valid but returns HTTP 403 to GitHub's automated checker.
+# Check this destination manually; other external links still fail on errors.
+[link_checker]
+skip_prefixes = ["https://openai.com/codex/"]
+
+[languages.cn]
+title = "Prototype Sam"
+
+[languages.cn.translations]
+home = "主页"
+last_updated = "最后更新"
+lang_en = "English"
+lang_cn = "中文"
+lang_ja = "日本語"
+menu_name = "姓名"
+menu_research = "研究"
+menu_teaching = "教学"
+menu_cv = "CV"
+menu_more = "更多"
+date_format = "%Y年%m月%d日"
+
+[languages.ja]
+title = "Prototype Sam"
+
+[languages.ja.translations]
+home = "ホーム"
+last_updated = "最終更新"
+lang_en = "English"
+lang_cn = "中文"
+lang_ja = "日本語"
+menu_name = "名前"
+menu_research = "研究"
+menu_teaching = "教育"
+menu_cv = "CV"
+menu_more = "もっと"
+date_format = "%Y年%m月%d日"
+
+[translations]
+home = "Start"
+last_updated = "Last updated"
+lang_en = "English"
+lang_cn = "中文"
+lang_ja = "日本語"
+menu_name = "Name"
+menu_research = "Research"
+menu_teaching = "Teaching"
+menu_cv = "CV"
+menu_more = "More"
+date_format = "%B %d, %Y"
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+
+[markdown.highlighting]
+theme = "dark-plus"
+
+[extra]
+# Put all your custom variables here
+show_word_count = false
+show_reading_time = false
+
+date_format = "%a %b %e, %Y"
+
+home = "Start"
+
+# text is the fallback label; translation_key is optional and stays fixed when
+# labels are edited. page is an optional content path for translated navigation.
+# For files and external sites, give only link (and an optional translation_key).
+sam_menu = [
+        { text = "Name", translation_key = "menu_name", page = "about.md", link = "/about" },
+        { text = "Research", translation_key = "menu_research", page = "research.md", link = "/research" },
+        { text = "Teaching", translation_key = "menu_teaching", page = "teaching.md", link = "/teaching" },
+        { text = "CV", translation_key = "menu_cv", link = "/sample.pdf" },
+        { text = "More", translation_key = "menu_more", page = "more.md", link = "/more" }
+]
+
+sam_bottom_menu = true
+# true hides Teaching from the homepage and bottom menus; false shows it.
+# This only changes navigation: the pages still build and work via direct URLs.
+# To exclude them from the build too, add draft = true to content/teaching.md,
+# each course page, and content/teaching/_index.cn.md. Keep the English
+# content/teaching/_index.md non-draft (see README's Teaching Toggle section).
+hide_teaching = false
+# google_analytics = "G-XXXXXXXXXX"    # Uncomment and set your tracking ID to enable
+
+# true keeps automatic mode dark instead of following the system appearance.
+# Manual light/dark overrides are still allowed when triple_click is true.
+always_dark = false
+# false disables the homepage triple-click gesture and ignores saved overrides.
+# Set always_dark = true and triple_click = false to keep the site dark for everyone.
+triple_click = true
+light_mode_transition = true            # Smooth 0.3s fade when switching light/dark. Set false to disable.
+light_mode_style = "grey"               # Link color in light mode: "grey" (#555) or "blue" (#16537E)
+
+[extra.sam_footer]
+update_time=true
+text = ""
