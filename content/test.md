@@ -241,6 +241,8 @@ The text surrounding this trigger should remain in a single flowing paragraph, i
 This second paragraph should remain inside the note too. It includes inline mathematics, $\GL\_n(\mathbb{Q})$, and a [link to the research page](@/research.md).
 
 - A first point with **bold emphasis**.
+  1. A nested numbered point.
+     - A [third-level research link](@/research.md) keeps its full color.
 - A second point with enough text to wrap onto several lines in a narrow window. Every line should stay within the note's background, and scrolling should keep the content reachable.
 - A final point with `inline code`.
 
@@ -326,6 +328,7 @@ This text contains **bold**, *italic*, and a [research link](@/research.md).
 1. [Automorphic forms](@/research.md)
    1. [Eisenstein series](@/research.md)
       1. [Spherical](@/research.md)
+         1. [Fourth-level example](@/research.md)
       2. Non-spherical
    2. Cusp forms
 2. L-functions
@@ -334,7 +337,7 @@ This text contains **bold**, *italic*, and a [research link](@/research.md).
    - Artin L-functions
    - Hasse&ndash;Weil L-functions
 
-The linked items at all three depths should stay equally readable, including on hover and keyboard focus. Adding a level must not make its text or links progressively fainter.
+The linked items at all four depths should keep full-strength color, including on hover and keyboard focus. Font size stops shrinking after the third level; adding a fourth level must not make text or links progressively fainter.
 
 ## Inline Formatting
 

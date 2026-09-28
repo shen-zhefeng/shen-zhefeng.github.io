@@ -1,7 +1,6 @@
 +++
 title = "概要"
 [extra]
-no_header = true
 multilingual = true
 +++
 

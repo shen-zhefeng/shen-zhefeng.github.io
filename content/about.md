@@ -1,7 +1,6 @@
 +++
 title = "About"
 [extra]
-no_header = true
 lang_links = [{ code = "cn"}]
 +++
 

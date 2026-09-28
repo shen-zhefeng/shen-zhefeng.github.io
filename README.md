@@ -175,6 +175,10 @@ Choose the file for the part of the page you want to change:
 
 For example, change the content column width in `_layout.sass`, table cell spacing in `_content.sass`, or expandable button styling in `_disclosures.sass`. To choose the existing light/dark options, use `config.toml` as described above; edit `_theme.sass` when you want to change the actual colors or shared font settings.
 
+Page titles use 32px Didact Gothic Regular. Markdown headings step down from `#` to `####` at 28px, 24px, 20px, and 18px, also in regular weight. For example, write `# Main section`, then `## Subsection`, `### Smaller heading`, and `#### Smallest heading` on separate lines. Bulleted and numbered lists use 16px at the first level, 15px at the second, and 14px from the third level onward. Nesting changes their size, not their color or opacity, so links stay readable.
+
+All heading levels have 16px of space above and below, controlled in `_base.sass` and `_content.sass`. Horizontal rules have 8px above and below, set by the `skinny-hr` helper in `_mixins.sass`. These spaces add together when a heading follows a rule. The language links and content area have no extra gap between them beyond line spacing and the rule's top margin.
+
 The `.sass` files use indentation to group rules, so preserve the surrounding indentation when editing. Comments explain which visual element each section affects, and rules for small screens stay beside the feature they adjust. Keep the import order in `style.sass`: shared settings and helpers come first, followed by basic styles, content, layout, and disclosures. Layout follows content so alignment helpers still take precedence when used on a row of tags. Changing this order can change which style takes precedence.
 
 Run `zola serve --drafts` while editing to preview your changes, including the examples at `/test/`. Edit the source files in `sass/`; generated files in `public/` are replaced during a build. Check both themes and a narrow browser window after changing styles.

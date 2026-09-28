@@ -4,16 +4,17 @@
 // Contains styles for headings, paragraphs, code blocks,
 // blockquotes, tables, images, and lists within the content area
 #content
-    margin: 2rem 0
+    // Keep space below the content without adding a gap above its first divider
+    margin: 0 0 2rem
     line-height: 2em
     letter-spacing: 2px
     // Only top-level content boxes fill the column; nested boxes size themselves
     > div
         width: 100%
         margin-bottom: 1em
-    // Content headings — left-aligned (different from body headings which are centered)
-    & h1,h2,h3
-        margin: 1em 0em
+    // Content headings — left-aligned with the same 16px vertical margin
+    & h1,h2,h3,h4
+        margin: 1rem 0
         text-align: left
     // Content paragraphs — separate blocks with spacing; muted text never fades child links
     & p
@@ -95,6 +96,16 @@
             color: var(--text)
             & a
                 color: var(--text)
+
+// Ordered and bulleted list items use the same size at each nesting depth
+// Fixed rem values stop fourth-level and deeper lists from shrinking below 14px
+// Inline notes are mounted outside #content, so include their lists here too
+#content li, .inline_expandable-content li
+    font-size: 1rem
+#content li li, .inline_expandable-content li li
+    font-size: 0.9375rem
+#content li li li, .inline_expandable-content li li li
+    font-size: 0.875rem
 
 // Tables keep native table layout in pages and in notes mounted outside the page content
 #content table, .inline_expandable-content table

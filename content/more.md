@@ -4,8 +4,6 @@ title = "More"
 no_header = true
 +++
 
-# About This Template
-
 This site is a personal website template, built with a modified [zola-sam](https://github.com/janbaudisch/zola-sam) theme
 (a Zola port of [hugo-theme-sam](https://github.com/victoriadrake/hugo-theme-sam)).
 Source code: [GitHub](https://github.com/shen-zhefeng/shen-zhefeng.github.io).

@@ -31,13 +31,26 @@ body
     align-items: center
     opacity: 1
 
-// All headings (h1, h2, h3) — centered by default
-// opacity 0.6 makes them slightly transparent (subtle, not harsh)
-h1,h2,h3
-    margin-bottom: 0.5em
+// Every heading level has 16px above and below, with no left or right offset
+h1,h2,h3,h4,h5,h6
+    margin: 1rem 0
+
+// Markdown headings — centered by default outside the left-aligned content area
+// Use the bundled regular font without synthetic bold or fading smaller headings
+h1,h2,h3,h4
     text-align: center
     font-family: 'Didact Gothic', sans-serif
-    opacity: 0.6
+    font-weight: 400
+
+// Each Markdown heading level is smaller than the page title and the level above it
+h1
+    font-size: 1.75rem
+h2
+    font-size: 1.5rem
+h3
+    font-size: 1.25rem
+h4
+    font-size: 1.125rem
 
 // List items — muted text without fading links or compounding in nested lists
 li
