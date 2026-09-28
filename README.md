@@ -287,7 +287,7 @@ A separate note with **Markdown**.
 </div>
 ```
 
-The `id` must match the target block and be unique on that page. Several triggers can share the same target. Click the trigger, or focus it with Tab and press Enter or Space, to show or hide the content.
+The `id` must match the target block and be unique on that page. Several triggers can share the same target. The trigger looks like a regular link but shows or hides content instead of navigating. Click it, or focus it with Tab and press Enter or Space, to change the content's visibility.
 
 ## Math (KaTeX)
 
