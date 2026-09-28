@@ -2,7 +2,7 @@
 
 A Zola template for academic personal websites, modified from [zola-sam](https://github.com/janbaudisch/zola-sam) (a Zola port of [hugo-theme-sam](https://github.com/victoriadrake/hugo-theme-sam)).
 
-Developed using [OpenCode](https://opencode.ai) with DeepSeek API.
+Developed using [OpenCode](https://opencode.ai/) with [DeepSeek](https://www.deepseek.com/) models and [Codex](https://openai.com/codex/) with [GPT](https://chatgpt.com/) models.
 
 ## Features
 
@@ -19,7 +19,7 @@ Developed using [OpenCode](https://opencode.ai) with DeepSeek API.
 
 ### Prerequisites
 
-Install [Zola](https://getzola.org) (v0.22+):
+Install [Zola](https://getzola.org). This template and its CI are tested with v0.22.1:
 
 ```bash
 brew install zola      # macOS
@@ -153,16 +153,10 @@ Tracking is disabled by default. In `[extra]`, uncomment the following setting a
 ```toml
 [extra.sam_footer]
 update_time = true                 # Show the date the site was built
-text = ""                          # Optional text shown in every language
-```
-
-To show different footer text for each language, replace the `text` line with a table. The language codes match the site's English, Chinese, and Japanese versions:
-
-```toml
 text = { en = "Under construction.", cn = "网站建设中。", ja = "サイト準備中。" }
 ```
 
-If a page's language is missing from this table, the English text is used. Keep `text = ""` when no extra footer message is needed.
+The `text` table is the current setting. Edit its English (`en`), Chinese (`cn`), and Japanese (`ja`) messages in `config.toml` to change the footer. If a page's language is missing from the table, the English text is used. Replace the whole `text` line with `text = ""` to remove the message, or with `text = "Your message"` to show the same text in every language. The date is the build date, not the date you last edited a page.
 
 ## Customizing the Appearance
 
@@ -193,19 +187,18 @@ Run `zola serve --drafts` while editing to preview your changes, including the e
 
 ## Content Pages
 
-Each page is a Markdown file in `content/`:
+The main content files are Markdown files in `content/`:
 
 | File | Purpose |
-|---|---|---|
-| `_index.md` | Optional English homepage settings; the splash works without this file |
-| `_index.cn.md` | Homepage splash (CN) |
-| `_index.ja.md` | Homepage splash (JA) |
-| `about.md` | Bio, contact, social links |
-| `research.md`, `research.cn.md`, `research.ja.md` | Research interests and publications with expandable abstracts in EN/CN/JA |
-| `teaching.md` | Course schedule, office hours |
+|---|---|
+| `about.md`, `about.cn.md`, `about.ja.md` | Starter About pages; replace the template description with your bio, contact details, and links |
+| `research.md`, `research.cn.md`, `research.ja.md` | Example research interests and publications with expandable abstracts in EN/CN/JA |
+| `teaching.md` | Example course schedule and office hours |
 | `teaching/_index.md` | Groups course pages into a section; `render = false` keeps the landing page in `teaching.md` |
-| `cv.md` | Optional page you can create; the supplied menu links to `static/sample.pdf` |
+| `teaching/_index.cn.md` | Chinese section metadata for Teaching |
 | `more.md` | Template feature reference |
+
+There are no root `_index.md`, `_index.cn.md`, or `_index.ja.md` files in this template. Zola still generates the English, Chinese, and Japanese homepages from `config.toml`. Create a root `_index` file only if that language's homepage needs its own frontmatter or content. To add a CV page, create `content/cv.md`; the supplied CV menu item currently links to `static/sample.pdf`.
 
 Reference pages:
 
@@ -309,14 +302,13 @@ Custom macros (e.g., `\GL`) defined in `templates/index.html`.
 ## Development
 
 ```bash
-git checkout dev     # template branch
 zola serve           # live preview (http://127.0.0.1:1111)
 zola build           # production build
 zola check           # check internal and external links (requires network)
 ./test.sh            # production/draft builds, regression tests, and links
 ```
 
-The smoke test requires Zola 0.22.1 and Python 3 (`python3`). It builds the production site in `public/`, compiles drafts in a separate temporary directory, and checks that the hidden `/test/` reference page is absent from production and present in the draft build. Temporary drafts are removed even if a check fails. All Python regression suites named `tests/test_*.py` run automatically, followed by the internal/external link check. Only publish `public/` after the entire script succeeds.
+The smoke test uses Zola and Python 3 (`python3`); CI runs it with Zola 0.22.1. It builds the production site in `public/`, compiles drafts in a separate temporary directory, and checks that the hidden `/test/` reference page is absent from production and present in the draft build. Temporary drafts are removed even if a check fails. All Python regression suites named `tests/test_*.py` run automatically, followed by the internal/external link check. Only publish `public/` after the entire script succeeds.
 
 The regression suites check generated navigation and appearance settings, including all four `always_dark`/`triple_click` combinations. They also check that the smoke script rejects missing pages, drafts in production, and failing tests, and cleans up temporary drafts after failures.
 
