@@ -335,7 +335,7 @@ Key changes:
 - 3 custom shortcodes (expandable, inline_expandable, toggle) plus native `<details>`
 - Multilingual support (EN/CN/JA) with auto language buttons and manual `lang_links` override
 - Teaching toggle (`hide_teaching`) to hide the Teaching section
-- Footer "Last updated" date with i18n date format
+- Footer "Last updated:" date with i18n date format
 - CI/CD for GitHub Pages deploy with PR link check
 - Content pages resize smoothly: at the default font size, narrow screens keep 16px side gutters, tablets use a 576px text column when space permits, and windows 1280px or wider retain a 45% column capped at 800px. The homepage keeps its separate layout.
 - Google Analytics support (disabled by default)

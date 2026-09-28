@@ -55,7 +55,7 @@ date_format = "%Y年%m月%d日"
 
 [translations]
 home = "Start"
-last_updated = "Last updated"
+last_updated = "Last updated:"
 lang_en = "English"
 lang_cn = "中文"
 lang_ja = "日本語"
