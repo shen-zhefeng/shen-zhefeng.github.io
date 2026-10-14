@@ -11,7 +11,7 @@ Developed using [OpenCode](https://opencode.ai/) with [DeepSeek](https://www.dee
 - **Multilingual** — EN, CN, JA with automatic language buttons
 - **Expandable blocks** — collapsible content for paper abstracts, course details
 - **Syntax highlighting** — VSCode-style `dark-plus` theme (Giallo)
-- **Custom shortcodes** — 3 types: expandable, inline_expandable, toggle (plus native `<details>`)
+- **Custom components** — 3 types: expandable, inline_expandable, toggle (plus native `<details>`)
 - **Google Analytics** — built-in, disabled by default
 - **Responsive** — mobile-friendly with proper spacing
 
@@ -19,7 +19,7 @@ Developed using [OpenCode](https://opencode.ai/) with [DeepSeek](https://www.dee
 
 ### Prerequisites
 
-Install [Zola](https://getzola.org). This template and its CI are tested with v0.22.1:
+Install [Zola](https://getzola.org) **0.23.6**, the version used by this template and CI:
 
 ```bash
 brew install zola      # macOS
@@ -112,7 +112,7 @@ lang_ja = "日本語"
 
 ### Teaching Toggle
 
-Set `hide_teaching = true` in `[extra]` to hide Teaching from navigation. To also exclude its pages from the build (URLs return 404), add `draft = true` to the frontmatter of `content/teaching.md`, `content/teaching/_index.cn.md`, and each course page in `content/teaching/`. Keep the English `content/teaching/_index.md` non-draft: it only groups the courses and has `render = false`. This avoids a Zola 0.22.1 issue when both translated parent sections are drafted together. Reverse the draft flags and menu setting to restore teaching.
+Set `hide_teaching = true` in `[extra]` to hide Teaching from navigation. To also exclude its pages from the build (URLs return 404), add `draft = true` to the frontmatter of `content/teaching.md`, `content/teaching/_index.cn.md`, and each course page in `content/teaching/`. Keep the English `content/teaching/_index.md` non-draft: it only groups the courses and has `render = false`. This keeps the structural parent available while the individual course pages are excluded. Reverse the draft flags and menu setting to restore teaching.
 
 ### Light and Dark Mode
 
@@ -243,17 +243,23 @@ Tables wider than their available space scroll sideways within the page, includi
 
 To scroll with the keyboard, press Tab until the wide table has a visible outline, then use the Left and Right Arrow keys. Tables that already fit do not add an extra Tab stop. Scrolling or clicking inside a table keeps its surrounding expandable box open; links in the table still work normally.
 
-## Shortcodes
+## Components
+
+Zola 0.23 uses Tera components instead of the old shortcode syntax. Definitions live in `templates/components/`; shared page helpers live in `templates/helpers.html`. Block components open with a named tag and close with the same name. Self-closing components use the expression syntax shown below. Strings use quotes; booleans and arrays use braces.
+
+Give each `expandable` and `inline_expandable` a unique `id` on its page. Use a descriptive value such as `paper-one-abstract`; reuse it only when a `toggle` intentionally controls the same target. Automatic shortcode counters no longer exist. IDs connect labels, buttons, and content for keyboard and screen-reader access.
+
+Markdown pages are now also templates. To display component syntax literally, wrap the example (including its code fence) in a Tera raw block. The draft Test page demonstrates this. See [ZOLA-MIGRATION.md](ZOLA-MIGRATION.md) for the conversion rules.
 
 ### Expandable (block toggle)
 
 ```markdown
-{% expandable(trigger="Click to show abstract") %}
+{% <expandable id="shortcode-expandable-1" trigger="Click to show abstract"> %}
 Hidden content with **Markdown**.
-{% end %}
+{% </expandable> %}
 ```
 
-Parameters: `trigger` (required), `header` (line above trigger), `underline` (false = no underline).
+Parameters: `id` (required, unique on the page), `trigger` (required), `header` (line above trigger), `underline` (false = no underline).
 
 ### Native `<details>`
 
@@ -271,7 +277,7 @@ Keep blank lines around the Markdown body. For a themed border and content backg
 ### Inline Expandable (popover)
 
 ```markdown
-Text with {% inline_expandable(trigger="note") %} extra info. {% end %}
+Text with {% <inline_expandable id="shortcode-inline-expandable-1" trigger="note"> %} extra info. {% </inline_expandable> %}
 ```
 
 The note supports Markdown, including emphasis, links, paragraphs, and lists. The trigger stays in the surrounding sentence; the note opens above the page content. Click the trigger or note content to close it, or press Escape. For content that should expand in the page layout, use `expandable` or native `<details>`.
@@ -279,7 +285,7 @@ The note supports Markdown, including emphasis, links, paragraphs, and lists. Th
 ### Toggle an existing block
 
 ```markdown
-{{ toggle(text="Show or hide the note", id="my-note") }}
+{{ <toggle text="Show or hide the note" id="my-note" /> }}
 
 <div id="my-note" style="display: none;">
 
@@ -308,7 +314,7 @@ zola check           # check internal and external links (requires network)
 ./test.sh            # production/draft builds, regression tests, and links
 ```
 
-The smoke test uses Zola and Python 3 (`python3`); CI runs it with Zola 0.22.1. It builds the production site in `public/`, compiles drafts in a separate temporary directory, and checks that the hidden `/test/` reference page is absent from production and present in the draft build. Temporary drafts are removed even if a check fails. All Python regression suites named `tests/test_*.py` run automatically, followed by the internal/external link check. Only publish `public/` after the entire script succeeds.
+The smoke test uses Zola and Python 3 (`python3`); CI runs it with Zola 0.23.6. It builds the production site in `public/`, compiles drafts in a separate temporary directory, and checks that the hidden `/test/` reference page is absent from production and present in the draft build. Temporary drafts are removed even if a check fails. All Python regression suites named `tests/test_*.py` run automatically, followed by the internal/external link check. Only publish `public/` after the entire script succeeds.
 
 The regression suites check generated navigation and appearance settings, including all four `always_dark`/`triple_click` combinations. They also check that the smoke script rejects missing pages, drafts in production, and failing tests, and cleans up temporary drafts after failures.
 
@@ -316,13 +322,13 @@ For an offline internal-link check, use `zola check --skip-external-links`. This
 
 The valid Codex destination at `https://openai.com/codex/` returns HTTP 403 to GitHub's automated link checker. Its URL prefix is therefore excluded through `[link_checker].skip_prefixes` in `config.toml`; check this destination manually when editing its links. Other external links still fail validation on errors.
 
-The CI workflow (`.github/workflows/actions.yml`) runs this same script in a **validation job** with read-only repository permission. Zola is installed on the runner at version 0.22.1, with its download verified against a recorded SHA-256 checksum. The validated `public/` directory is saved as an artifact (a downloadable bundle of build output), retained for one day.
+The CI workflow (`.github/workflows/actions.yml`) runs this same script in a **validation job** with read-only repository permission. Zola is installed on the runner at version 0.23.6, with its download verified against a recorded SHA-256 checksum. The validated `public/` directory is saved as an artifact (a downloadable bundle of build output), retained for one day.
 
 A separate **deployment job** runs only after validation succeeds, and only for pushes to `main` or manual workflow runs on `main`. It downloads the validated production artifact and uses `peaceiris/actions-gh-pages` to publish it to `gh-pages`, without rebuilding. Only this job has permission to write repository contents. GitHub Pages should remain configured to **Deploy from a branch → gh-pages → /(root)**. PRs to `main` and manual runs on other branches validate only; pushes to `dev` do not trigger the workflow. New runs cancel older runs for the same branch to avoid overlapping deployments; PR runs are kept separate from `main`.
 
 Every action is pinned to a full commit SHA, with its release version in a nearby comment. When updating an action, verify the new commit against its official repository and update both the SHA and version comment. When updating Zola, update both `ZOLA_VERSION` and the Linux archive's `ZOLA_SHA256` in the workflow, then run the smoke test before publishing.
 
-After changing templates, shortcodes, or styles, also check the browser: mouse and keyboard operation, a narrow or short window, both light and dark mode, and translated pages. The Test page includes long notes and shared toggle targets for these checks. Verify that separate paragraphs remain separate, language and nested-list links remain readable, and links in styled details and blockquotes stay visible at rest, on hover, and with keyboard focus. Scroll the wide tables to their last column using both a pointer and the keyboard; the page should not move sideways, and the long inline note should remain vertically scrollable.
+After changing templates, components, or styles, also check the browser: mouse and keyboard operation, a narrow or short window, both light and dark mode, and translated pages. The Test page includes long notes and shared toggle targets for these checks. Verify that separate paragraphs remain separate, language and nested-list links remain readable, and links in styled details and blockquotes stay visible at rest, on hover, and with keyboard focus. Scroll the wide tables to their last column using both a pointer and the keyboard; the page should not move sideways, and the long inline note should remain vertically scrollable.
 
 ## Modifications from Original zola-sam
 
@@ -332,7 +338,7 @@ Key changes:
 - Zola 0.22 Giallo syntax highlighting (`dark-plus` theme) with line number CSS
 - Sass grouped by visual responsibility, with a short import list and comments explaining where to customize each feature
 - KaTeX self-hosted with custom macros
-- 3 custom shortcodes (expandable, inline_expandable, toggle) plus native `<details>`
+- 3 custom components (expandable, inline_expandable, toggle) plus native `<details>`
 - Multilingual support (EN/CN/JA) with auto language buttons and manual `lang_links` override
 - Teaching toggle (`hide_teaching`) to hide the Teaching section
 - Footer "Last updated:" date with i18n date format

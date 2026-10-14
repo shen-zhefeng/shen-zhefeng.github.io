@@ -1,0 +1,16 @@
+{% component expandable(id, trigger, header="", underline=true) %}
+<div class="expandable-container">
+{{header| default(value="")| markdown | safe}}
+{% set underline_class = "" %}
+{% if underline is defined and not underline %}
+    {% set underline_class = " no-underline" %}
+{% endif %}
+{# Explicit IDs keep every trigger connected to its unique content box. #}
+<button type="button" class="expandable-trigger{{underline_class}}" aria-expanded="false" aria-controls="{{ id | escape_html }}" onclick="toggleDetails(this)">
+    {{ trigger | escape_html }}
+</button>
+<div id="{{ id | escape_html }}" class="expandable-content" style="display: none;" onclick="closeBox(this)">
+    {{ body | markdown | safe }}
+</div>
+</div>
+{% endcomponent %}

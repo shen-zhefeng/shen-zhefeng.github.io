@@ -6,17 +6,17 @@ multilingual = true
 
 # Publications
 
-{% expandable(trigger="Paper Title (Year)") %}
+{% <expandable id="shortcode-expandable-1" trigger="Paper Title (Year)"> %}
 **Abstract.** Your abstract here. Link to [arXiv:xxxx.xxxxx](https://arxiv.org) or [PDF](/sample.pdf).
-{% end %}
+{% </expandable> %}
 
-{% expandable(trigger="Paper with a Theorem", header="**Main Theorem.** Your statement here.") %}
+{% <expandable id="shortcode-expandable-2" trigger="Paper with a Theorem" header="**Main Theorem.** Your statement here."> %}
 Brief explanation or context for the result.
-{% end %}
+{% </expandable> %}
 
-{% expandable(trigger="Another Paper (Year)", underline=false) %}
+{% <expandable id="shortcode-expandable-3" trigger="Another Paper (Year)" underline={false}> %}
 **Abstract.** Another example using `underline=false`.
-{% end %}
+{% </expandable> %}
 
 # Research Interests
 

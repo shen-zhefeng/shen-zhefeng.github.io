@@ -16,26 +16,26 @@ Use it as a reference when building your own academic website.
 
 ## Research: Expandable Abstracts
 
-{% expandable(trigger="On the distribution of prime geodesics (2024)") %}
+{% <expandable id="shortcode-expandable-1" trigger="On the distribution of prime geodesics (2024)"> %}
 **Abstract.** We study the equidistribution of prime geodesics on hyperbolic surfaces,
 generalizing the Selberg trace formula to the setting of GL<sub>2</sub> over a number field.
 [arXiv:xxxx.xxxxx](https://arxiv.org)
 
 This second paragraph should start on its own line with space above it. See the [research page](@/research.md) for related work.
-{% end %}
+{% </expandable> %}
 
-{% expandable(trigger="L-functions and automorphic forms (2023)", underline=false) %}
+{% <expandable id="shortcode-expandable-2" trigger="L-functions and automorphic forms (2023)" underline={false}> %}
 **Abstract.** We establish new bounds for automorphic L-functions on GL<sub>n</sub>
 using the theory of Eisenstein series and spectral methods.
 [J. Number Theory](https://example.com)
-{% end %}
+{% </expandable> %}
 
 ### Expandable with Header
 
-{% expandable(trigger="Click to see theorem", header="**Theorem** (Prime Number Theorem)") %}
+{% <expandable id="shortcode-expandable-3" trigger="Click to see theorem" header="**Theorem** (Prime Number Theorem)"> %}
 Let &pi;(x) denote the number of primes &le; x. Then
 &pi;(x) &sim; x / log x as x &rarr; &infin;.
-{% end %}
+{% </expandable> %}
 
 ---
 
@@ -110,9 +110,9 @@ The deliberately long reference below checks horizontal scrolling. Narrow the wi
 
 1. Monday 14:00&ndash;16:00
 2. Wednesday 10:00&ndash;12:00
-3. {% inline_expandable(trigger="by appointment") %}
+3. {% <inline_expandable id="shortcode-inline-expandable-1" trigger="by appointment"> %}
 Email to schedule. Available Friday afternoons.
-{% end %}
+{% </inline_expandable> %}
 
 ---
 
@@ -198,20 +198,20 @@ style = "inline"
 
 ---
 
-## Shortcode Reference
+## Component Reference
 
 ### `expandable` (block-toggle)
 
-{% expandable(trigger="Click to show hidden content") %}
+{% <expandable id="shortcode-expandable-4" trigger="Click to show hidden content"> %}
 Hidden content with **Markdown**, [links](https://example.com), and lists:
 
 - item one
 - item two
-{% end %}
+{% </expandable> %}
 
-{% expandable(trigger="No underline variant", underline=false) %}
+{% <expandable id="shortcode-expandable-5" trigger="No underline variant" underline={false}> %}
 The trigger link above has no underline.
-{% end %}
+{% </expandable> %}
 
 ### `<details>` (native expandable)
 
@@ -229,13 +229,13 @@ This content expands and collapses with **zero** JavaScript.
 
 ### `inline_expandable` (inline popover)
 
-This sentence has an {% inline_expandable(trigger="inline popover") %}
+This sentence has an {% <inline_expandable id="shortcode-inline-expandable-2" trigger="inline popover"> %}
 This floating note supports **Markdown** and [links](https://example.com). Click the note or the trigger to close it, or press Escape.
-{% end %} right here.
+{% </inline_expandable> %} right here.
 
 #### Long note near the end of a line
 
-The text surrounding this trigger should remain in a single flowing paragraph, including on a narrow screen: {% inline_expandable(trigger="read a longer note") %}
+The text surrounding this trigger should remain in a single flowing paragraph, including on a narrow screen: {% <inline_expandable id="shortcode-inline-expandable-3" trigger="read a longer note"> %}
 **A longer note.** This first paragraph checks that the background and border grow to contain the text. Narrow the browser window, or rotate a phone to landscape, and open the note again.
 
 This second paragraph should remain inside the note too. It includes inline mathematics, $\GL\_n(\mathbb{Q})$, and a [link to the research page](@/research.md).
@@ -253,11 +253,11 @@ If the table below is wider than this note, it should scroll sideways within the
 | [Research](@/research.md) | `NOTE2026ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ` | Last column |
 
 Close this note with its trigger, by clicking its content, or with Escape. The words after the trigger should keep their place in the sentence.
-{% end %} and then the sentence continues normally.
+{% </inline_expandable> %} and then the sentence continues normally.
 
 ### `toggle` (a separate block)
 
-{{ toggle(text="Show or hide the shared note", id="test-shared-note") }}
+{{ <toggle text="Show or hide the shared note" id="test-shared-note" /> }}
 
 <div id="test-shared-note" style="display: none;">
 
@@ -269,13 +269,13 @@ Close this note with its trigger, by clicking its content, or with Escape. The w
 
 </div>
 
-{{ toggle(text="A second trigger for the same note", id="test-shared-note") }}
+{{ <toggle text="A second trigger for the same note" id="test-shared-note" /> }}
 
-Use the same `id` in both `toggle` shortcodes and the target's HTML `id`. Give each independent target a unique ID.
+Use the same `id` in both `toggle` components and the target's HTML `id`. Give each independent target a unique ID.
 
 #### Initially visible target
 
-{{ toggle(text="Hide or show the visible note", id="test-visible-note") }}
+{{ <toggle text="Hide or show the visible note" id="test-visible-note" /> }}
 
 <div id="test-visible-note">
 
@@ -456,6 +456,6 @@ hide_teaching = true   # hide Teaching from menu
 
 To also exclude teaching pages from the build, set `draft = true` in the frontmatter of `content/teaching.md`, `content/teaching/_index.cn.md`, and every course page in `content/teaching/`. Put the flag before `[extra]`, if that heading is present.
 
-Keep the English `content/teaching/_index.md` non-draft: it groups the courses and has `render = false`. This avoids a Zola 0.22.1 issue when both translated parent sections are drafted together.
+Keep the English `content/teaching/_index.md` non-draft: it groups the courses and has `render = false`. This keeps the structural parent available while the individual course pages are excluded.
 
 To restore teaching, remove the draft flags and set `hide_teaching = false`.

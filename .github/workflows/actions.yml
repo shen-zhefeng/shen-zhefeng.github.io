@@ -30,10 +30,10 @@ jobs:
 
       # Install on the runner so both the smoke script and Python suites can
       # invoke the same Zola binary. Verify the release before extracting it.
-      - name: Install Zola 0.22.1
+      - name: Install Zola 0.23.6
         env:
-          ZOLA_VERSION: 0.22.1
-          ZOLA_SHA256: 0ca09aa40376aaa9ddfb512ff9ad963262ef95edb0d0f2d5ec6961b6f5cf22ef
+          ZOLA_VERSION: 0.23.6
+          ZOLA_SHA256: 8f5132b3522412d04e395e0b25f6d68613ad272a873e54a2b3ebf664873024a4
         run: |
           archive="$RUNNER_TEMP/zola.tar.gz"
           curl --fail --location --retry 3 \

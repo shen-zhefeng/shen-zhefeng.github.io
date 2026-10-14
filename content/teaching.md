@@ -18,6 +18,6 @@ title = "Teaching"
 
 1. Monday 14:00&ndash;16:00
 2. Wednesday 10:00&ndash;12:00
-3. {% inline_expandable(trigger="by appointment") %}
+3. {% <inline_expandable id="shortcode-inline-expandable-1" trigger="by appointment"> %}
 Email to schedule. Available Friday afternoons.
-{% end %}
+{% </inline_expandable> %}

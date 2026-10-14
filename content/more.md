@@ -84,21 +84,21 @@ $$\zeta(s) = \sum_{n=1}^\infty \frac{1}{n^s}$$
 ## Expandable Blocks
 
 ### Basic (click to show/hide)
-{% expandable(trigger="Click for abstract") %}
+{% <expandable id="shortcode-expandable-1" trigger="Click for abstract"> %}
 Hidden content with **Markdown** and [links](https://example.com).
 
 A blank line starts a separate paragraph, for example to explain the main result after an introduction.
-{% end %}
+{% </expandable> %}
 
 ### No underline
-{% expandable(trigger="Plain text trigger", underline=false) %}
+{% <expandable id="shortcode-expandable-2" trigger="Plain text trigger" underline={false}> %}
 The trigger link above has no underline.
-{% end %}
+{% </expandable> %}
 
 ### With header (line above trigger)
-{% expandable(trigger="Click for theorem", header="**Theorem.** Your statement here.") %}
+{% <expandable id="shortcode-expandable-3" trigger="Click for theorem" header="**Theorem.** Your statement here."> %}
 Explanation or proof of the theorem.
-{% end %}
+{% </expandable> %}
 
 ---
 
@@ -117,7 +117,7 @@ Hidden content with **Markdown** support.
 
 ## Inline Expandable (popover)
 
-Text with an {% inline_expandable(trigger="inline note") %} extra info floating right here. {% end %} in the middle of a sentence.
+Text with an {% <inline_expandable id="shortcode-inline-expandable-1" trigger="inline note"> %} extra info floating right here. {% </inline_expandable> %} in the middle of a sentence.
 
 The note supports Markdown, including links and lists. Click the trigger or the note content to close it, or press Escape. Use a block expandable or native `<details>` when the content should expand in the page layout.
 
@@ -125,7 +125,7 @@ The note supports Markdown, including links and lists. Click the trigger or the 
 
 ## Toggle a Separate Block
 
-{{ toggle(text="Show or hide a separate note", id="quick-reference-note") }}
+{{ <toggle text="Show or hide a separate note" id="quick-reference-note" /> }}
 
 <div id="quick-reference-note" style="display: none;">
 
@@ -133,7 +133,7 @@ This note uses **Markdown** and is controlled by the trigger above. Press Tab to
 
 </div>
 
-The `toggle` shortcode takes `text` for its label and `id` for the target block. Match the target's HTML `id`, and use a different target ID for each independent note. See the README for a complete source example.
+The `toggle` component takes `text` for its label and `id` for the target block. Match the target's HTML `id`, and use a different target ID for each independent note. See the README for a complete source example.
 
 ---
 

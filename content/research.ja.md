@@ -6,17 +6,17 @@ multilingual = true
 
 # 論文
 
-{% expandable(trigger="論文タイトル（年）") %}
+{% <expandable id="shortcode-expandable-1" trigger="論文タイトル（年）"> %}
 **要旨。** ここに論文の要旨を記入してください。[arXiv:xxxx.xxxxx](https://arxiv.org) または [PDF](/sample.pdf) へのリンクを追加できます。
-{% end %}
+{% </expandable> %}
 
-{% expandable(trigger="定理を含む論文", header="**主定理。** ここに定理の内容を記入してください。") %}
+{% <expandable id="shortcode-expandable-2" trigger="定理を含む論文" header="**主定理。** ここに定理の内容を記入してください。"> %}
 この結果の背景や意義を簡潔に説明してください。
-{% end %}
+{% </expandable> %}
 
-{% expandable(trigger="別の論文（年）", underline=false) %}
+{% <expandable id="shortcode-expandable-3" trigger="別の論文（年）" underline={false}> %}
 **要旨。** `underline=false` を使用した例です。
-{% end %}
+{% </expandable> %}
 
 # 研究分野
 

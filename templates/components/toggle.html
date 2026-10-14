@@ -1,0 +1,3 @@
+{% component toggle(text, id) -%}
+<span class="inline-toggle" role="button" tabindex="0" aria-expanded="false" aria-controls="{{ id | escape_html }}" onclick="toggleBlock(this.getAttribute('aria-controls'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleBlock(this.getAttribute('aria-controls'));}">{{ text | escape_html }}</span>
+{%- endcomponent %}

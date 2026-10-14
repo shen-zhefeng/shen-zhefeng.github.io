@@ -6,17 +6,17 @@ multilingual = true
 
 # 论文
 
-{% expandable(trigger="论文题目（年份）") %}
+{% <expandable id="shortcode-expandable-1" trigger="论文题目（年份）"> %}
 **摘要。** 在这里填写论文摘要。提供 [arXiv:xxxx.xxxxx](https://arxiv.org) 或 [PDF](/sample.pdf) 链接。
-{% end %}
+{% </expandable> %}
 
-{% expandable(trigger="包含定理的论文", header="**主要定理。** 在这里填写定理陈述。") %}
+{% <expandable id="shortcode-expandable-2" trigger="包含定理的论文" header="**主要定理。** 在这里填写定理陈述。"> %}
 简要说明这一结果的背景或意义。
-{% end %}
+{% </expandable> %}
 
-{% expandable(trigger="另一篇论文（年份）", underline=false) %}
+{% <expandable id="shortcode-expandable-3" trigger="另一篇论文（年份）" underline={false}> %}
 **摘要。** 这是一个使用 `underline=false` 的示例。
-{% end %}
+{% </expandable> %}
 
 # 研究兴趣
 

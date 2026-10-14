@@ -1,4 +1,3 @@
-{% import "macros.html" as macros %}
 
 <!DOCTYPE html>
 {# The Chinese URL code is cn; assistive technology needs the language tag zh-CN. #}
@@ -30,7 +29,7 @@
             {% if config.generate_rss %}
             <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ get_url(path='rss.xml') }}">
         {% endif %}
-        {% include "shortcodes/_toggle_details.js.html" %}
+        {% include "_disclosures.js.html" %}
         {% if config.extra.light_mode_transition %}
         <style>
             :root, body { transition: background-color 0.3s ease, color 0.3s ease; }
@@ -94,8 +93,8 @@
                             {# skip #}
                         {% else %}
                         <div class="big-link">
-                            <a href="{{ macros::menu_url(link=link) }}">
-                                {{ macros::menu_label(link=link) }}
+                            <a href="{{ <site.menu_url link={link} /> }}">
+                                {{ <site.menu_label link={link} /> }}
                             </a>
                         </div>
                         {% endif %}
@@ -105,7 +104,7 @@
                         {% set current = get_section(path=current) %}
                         <div class="big-link">
                             <a href="{{ current.permalink }}">
-                                {{ macros::title_or_last(component=current) }}
+                                {{ <site.title_or_last item={current} /> }}
                             </a>
                         </div>
                     {% endfor %}

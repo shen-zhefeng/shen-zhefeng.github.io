@@ -1,0 +1,5 @@
+{# Keep phrasing output on one line; encoded newlines preserve rich note content without splitting its parent paragraph. #}
+{% component inline_expandable(id, trigger) -%}
+<span class="inline_expandable-container"><button type="button" class="expandable-trigger inline_expandable-trigger" aria-expanded="false" aria-controls="{{ id | escape_html }}" onclick="toggleDetails(this)">{{ trigger | escape_html }}</button><template data-inline-popover><div id="{{ id | escape_html }}" class="inline_expandable-content" role="region" aria-label="{{ trigger | escape_html }}" tabindex="-1" style="display: none;" onclick="closeBox(this)">{{ body | markdown | replace(from="
+", to="&#10;") | safe }}</div></template></span>
+{%- endcomponent %}
